@@ -2,7 +2,7 @@ import React from 'react';
 import TagList from '../tag-list/tag-list';
 import {tags} from '../../../mocks/tags';
 import CatalogList from '../catalog-list/catalog-list';
-import {encodeText} from '../../../utils';
+import {encodeText} from '../../utils';
 import {articles} from '../../../mocks/articles';
 
 articles.forEach((art) => {

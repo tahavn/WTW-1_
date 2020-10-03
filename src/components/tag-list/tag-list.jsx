@@ -5,7 +5,9 @@ const TagList = (props) => {
   const {items} = props;
   return (
     <ul className="catalog__genres-list">
+      <TagItem title={`All genres`} />
       {items &&
+        
         items.map((item) => {
           return <TagItem key={item} title={item} />;
         })}

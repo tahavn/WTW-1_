@@ -8,6 +8,9 @@ import Mylist from '../mylist/mylist';
 import Player from '../player/player';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 
+import {films} from '../../../mocks/films'
+import {tags} from '../../../mocks/tags'
+
 const App = () => {
   return (
     <BrowserRouter>
