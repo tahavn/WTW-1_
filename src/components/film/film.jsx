@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../header/header';
+import Footer from '../footer/footer';
 const Film = (props) => {
   const {id} = props.match.params;
-  const film = props.films[id]
+  const film = props.films[id];
   return (
     <>
       <section className="movie-card movie-card--full">
@@ -17,14 +18,16 @@ const Film = (props) => {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <Header/>
+          <Header />
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{film.title}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{film.genre}</span>
-                <span className="movie-card__year">{film.year.getFullYear()}</span>
+                <span className="movie-card__year">
+                  {film.year.getFullYear()}
+                </span>
               </p>
 
               <div className="movie-card__buttons">
@@ -126,13 +129,17 @@ const Film = (props) => {
                   </p>
                   <p className="movie-card__details-item">
                     <strong className="movie-card__details-name">Genre</strong>
-                    <span className="movie-card__details-value">{film.genre}</span>
+                    <span className="movie-card__details-value">
+                      {film.genre}
+                    </span>
                   </p>
                   <p className="movie-card__details-item">
                     <strong className="movie-card__details-name">
                       Released
                     </strong>
-                    <span className="movie-card__details-value">{film.year.getFullYear()}</span>
+                    <span className="movie-card__details-value">
+                      {film.year.getFullYear()}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -212,19 +219,7 @@ const Film = (props) => {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </>
   );

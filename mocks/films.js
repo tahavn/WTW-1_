@@ -24,8 +24,9 @@ const randomDate = () => {
 };
 
 const getMovies = (array) => {
-  return array.reduce((acc, movie) => {
+  return array.reduce((acc, movie,index) => {
     acc.push({
+      id: index,
       title: movie,
       genre: getRandomElement(genres),
       rating: Math.floor(Math.random() * 5),

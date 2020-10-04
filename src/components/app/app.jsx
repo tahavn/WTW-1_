@@ -24,6 +24,7 @@ const App = () => {
     });
     setSortedFilms(newFilms);
   }, [sortedTag]);
+
   return (
     <BrowserRouter>
       <Switch>
