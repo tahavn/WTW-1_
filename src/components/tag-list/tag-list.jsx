@@ -2,14 +2,13 @@ import React from 'react';
 import TagItem from '../tag-item/tag-item';
 import PropTypes from 'prop-types';
 const TagList = (props) => {
-  const {items} = props;
+  const {items,handlerSorted} = props;
   return (
     <ul className="catalog__genres-list">
-      <TagItem title={`All genres`} />
+      <TagItem handlerSorted={handlerSorted} title={`All genres`} />
       {items &&
-        
         items.map((item) => {
-          return <TagItem key={item} title={item} />;
+          return <TagItem  handlerSorted={handlerSorted} key={item} title={item} />;
         })}
     </ul>
   );

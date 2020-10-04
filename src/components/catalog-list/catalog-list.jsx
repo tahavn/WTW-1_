@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import CatalogItem from '../catalog-item/catalog-item';
 
 const CatalogList = (props) => {
-  const {articles} = props;
+  const {films} = props;
   return (
     <div className="catalog__movies-list">
-      {articles &&
-        articles.map((article) => {
-          return <CatalogItem key={article.title} article={article} />;
+      {films &&
+        films.map((film) => {
+          return <CatalogItem key={film.title} film={film} />;
         })}
     </div>
   );
 };
 
 CatalogList.propTypes = {
-  articles: PropTypes.array,
+  films: PropTypes.array,
 };
 
 export default CatalogList;
