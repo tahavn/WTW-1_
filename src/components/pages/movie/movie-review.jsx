@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const MovieReview = () => {
+const MovieReview = (props) => {
+  const {label, activeTab} = props;
+  const style = label === activeTab ? {display: `flex`} : {display: `none`};
   return (
-    <div className="movie-card__reviews movie-card__row">
+    <div className="movie-card__reviews movie-card__row" style={style}>
       <div className="movie-card__reviews-col">
         <div className="review">
           <blockquote className="review__quote">
@@ -14,9 +17,7 @@ const MovieReview = () => {
 
             <footer className="review__details">
               <cite className="review__author">Kate Muir</cite>
-              <time className="review__date">
-                December 24, 2016
-              </time>
+              <time className="review__date">December 24, 2016</time>
             </footer>
           </blockquote>
 
@@ -120,5 +121,8 @@ const MovieReview = () => {
     </div>
   );
 };
-
+MovieReview.propTypes = {
+  label: PropTypes.string,
+  activeTab: PropTypes.string,
+};
 export default MovieReview;

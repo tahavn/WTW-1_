@@ -1,8 +1,9 @@
 import React from 'react';
 import MovieNavLink from './movie-nav-link';
+import PropTypes from 'prop-types';
 
 const MovieNav = (props) => {
-  const { navLink } = props;
+  const {navLink} = props;
   return (
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
@@ -14,5 +15,7 @@ const MovieNav = (props) => {
     </nav>
   );
 };
-
+MovieNav.propTypes = {
+  navLink: PropTypes.string,
+};
 export default MovieNav;

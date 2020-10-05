@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MovieDetails = () => {
+const MovieDetails = (props) => {
+  const {label, activeTab} = props;
+  const style = label === activeTab ? {display: `flex`} : {display: `none`};
   return (
-    <div className="movie-card__text movie-card__row">
+    <div className="movie-card__reviews movie-card__row" style={style}>
       <div className="movie-card__text-col">
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Director</strong>
@@ -47,7 +49,8 @@ const MovieDetails = () => {
 };
 
 MovieDetails.propTypes = {
-  id: PropTypes.number,
+  label: PropTypes.string,
+  activeTab: PropTypes.string,
 };
 
 export default MovieDetails;

@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const MovieOverview = (props) => {
+  const {label, activeTab} = props;
+  const style = label === activeTab ? {display: `flex`} : {display: `none`};
   return (
-    <>
+    <div className="movie-card__reviews movie-card__row" style={style}>
       <div className="movie-rating">
         <div className="movie-rating__score">8,9</div>
         <p className="movie-rating__meta">
@@ -38,12 +40,13 @@ const MovieOverview = (props) => {
           </strong>
         </p>
       </div>
-    </>
+    </div>
   );
 };
 
 MovieOverview.propTypes = {
-  id: PropTypes.number,
+  label: PropTypes.string,
+  activeTab: PropTypes.string,
 };
 
 export default MovieOverview;

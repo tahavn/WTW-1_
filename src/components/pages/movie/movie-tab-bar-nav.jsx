@@ -8,13 +8,12 @@ class MovieTabBar extends PureComponent {
     this.state = {
       activeTab: null,
     };
+    this.setActiveTab = this.setActiveTab.bind(this);
   }
 
   componentDidMount() {
     const {children = []} = this.props;
-
     const activeTab = this.getChildrenLabels(children)[0];
-
     this.setActiveTab(activeTab);
   }
 
@@ -22,9 +21,11 @@ class MovieTabBar extends PureComponent {
     return children.map(({props}) => props.label);
   }
 
-  setActiveTab(activeTab) {
+  setActiveTab(activeTab, event) {
+    if (event) {
+      event.preventDefault();
+    }
     const {activeTab: currentTab} = this.state;
-
     if (currentTab !== activeTab) {
       this.setState({
         activeTab,
@@ -37,8 +38,6 @@ class MovieTabBar extends PureComponent {
     const {activeTab} = this.state;
 
     return this.getChildrenLabels(children).map((link) => {
-      console.log(link);
-
       return (
         <MovieNavLink
           key={link}
@@ -53,16 +52,15 @@ class MovieTabBar extends PureComponent {
   render() {
     const {activeTab} = this.state;
     const {children} = this.props;
+
     return (
       <div className="movie-card__desc">
         <nav className="movie-nav movie-card__nav">
           <ul className="movie-nav__list">{this.renderTabs()}</ul>
         </nav>
-        <div className="movie-card__reviews movie-card__row">
-          {React.Children.map(children, (child) =>
-            React.cloneElement(child, {activeTab})
-          )}
-        </div>
+        {React.Children.map(children, (child) =>
+          React.cloneElement(child, {activeTab})
+        )}
       </div>
     );
   }
