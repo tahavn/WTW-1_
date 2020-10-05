@@ -2,20 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function CatalogItem(props) {
-  const {article} = props;
+  const {film} = props;
   return (
     <article className="small-movie-card catalog__movies-card">
       <div className="small-movie-card__image">
         <img
-          src={`img/${article.src}.jpg`}
-          alt={`${article.title}`}
+          src={`img/${film.src}.jpg`}
+          alt={`${film.title}`}
           width="280"
           height="175"
         />
       </div>
       <h3 className="small-movie-card__title">
         <a className="small-movie-card__link" href="movie-page.html">
-          {article.title}
+          {film.title}
         </a>
       </h3>
     </article>
@@ -23,9 +23,9 @@ function CatalogItem(props) {
 }
 
 CatalogItem.propTypes = {
-  article: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
+  film: PropTypes.shape({
+    title: PropTypes.string,
+    src: PropTypes.string,
   }).isRequired,
 };
 
