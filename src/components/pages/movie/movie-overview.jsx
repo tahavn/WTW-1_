@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const MovieOverview = (props) => {
   const {label, activeTab} = props;
-  const style = label === activeTab ? {display: `flex`} : {display: `none`};
+  const style = label === activeTab ? {display: `block`} : {display: `none`};
   return (
     <div className="movie-card__reviews movie-card__row" style={style}>
       <div className="movie-rating">

@@ -1,8 +1,9 @@
 import React from 'react';
-
-const Header = () => {
+import PropTypes from 'prop-types';
+const Header = (props) => {
+  const {className} = props;
   return (
-    <header className="page-header movie-card__head">
+    <header className={`page-header movie-card__head ${className || ``}`}>
       <div className="logo">
         <a className="logo__link">
           <span className="logo__letter logo__letter--1">W</span>
@@ -20,4 +21,7 @@ const Header = () => {
   );
 };
 
+Header.propTypes = {
+  className: PropTypes.string,
+};
 export default Header;

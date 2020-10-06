@@ -10,6 +10,7 @@ import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 import {getRandomElement} from '../../utils';
 import {films} from '../../../mocks/films';
 import {tags} from '../../../mocks/tags';
+import MylistPage from '../pages/mylist-page/mylist-page';
 
 const App = () => {
   const [sortedFilms, setSortedFilms] = useState(films);
@@ -53,7 +54,7 @@ const App = () => {
           }}
         />
         <Route path="/mylist">
-          <Mylist />
+          <MylistPage />
         </Route>
         <Route
           path="/player/:id"

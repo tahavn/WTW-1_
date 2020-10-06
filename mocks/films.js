@@ -33,8 +33,8 @@ const getMovies = (array) => {
       descriptin: `${getRandomElement(stringForDescription)} ${getRandomElement(
         stringForDescription
       )} ${getRandomElement(stringForDescription)}`,
-      year: randomDate(),
-      src: encodeText(movie),
+      year: randomDate().getFullYear(),
+      src: `/img/${encodeText(movie)}.jpg`,
     });
     return acc;
   }, []);
