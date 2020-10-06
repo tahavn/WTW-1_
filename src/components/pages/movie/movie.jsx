@@ -6,22 +6,20 @@ import MovieDetails from './movie-details';
 import MovieReview from './movie-review';
 import MovieOverview from './movie-overview';
 import Footer from '../../footer/footer';
-import SmallMovieCard from '../../small-movie-card/small-movie-card';
+// import SmallMovieCard from '../../small-movie-card/small-movie-card';
+import CatalogList from '../../catalog-list/catalog-list';
 
 const MoviePage = (props) => {
   const id = props.match.params.id;
-  const {films} = props
-  const film = films[id]
-
+  const {films} = props;
+  const film = films[id];
+  const filmSlice = films.slice(0,5);
   return (
     <>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img
-              src={film.src}
-              alt="The Grand Budapest Hotel"
-            />
+            <img src={film.src} alt="The Grand Budapest Hotel" />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -65,12 +63,7 @@ const MoviePage = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img
-                src={film.src}
-                alt={film.title}
-                width="218"
-                height="327"
-              />
+              <img src={film.src} alt={film.title} width="218" height="327" />
             </div>
 
             <MovieTabBar>
@@ -85,9 +78,10 @@ const MoviePage = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <div className="catalog__movies-list">
+          {/* <div className="catalog__movies-list">
             <SmallMovieCard />
-          </div>
+          </div> */}
+          <CatalogList films={filmSlice} />
         </section>
 
         <Footer />

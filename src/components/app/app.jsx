@@ -25,7 +25,6 @@ const App = () => {
     });
     setSortedFilms(newFilms);
   }, [sortedTag]);
-
   return (
     <BrowserRouter>
       <Switch>
@@ -34,6 +33,7 @@ const App = () => {
           <Content
             handlerSorted={setSortedTag}
             tags={tags}
+            activeTag={sortedTag}
             films={sortedFilms}
           />
         </Route>
@@ -59,7 +59,7 @@ const App = () => {
         <Route
           path="/player/:id"
           render={(props) => {
-            return <Player {...props} />;
+            return <Player {...props} films={films} />;
           }}
         />
 

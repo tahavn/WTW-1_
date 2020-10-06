@@ -1,9 +1,10 @@
 import React from 'react';
 import Header from '../header/header';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 const Main = (props) => {
   const {src, title, genre, year, id} = props.randomFilm;
-  const years = year.getFullYear();
+  // const years = year.getFullYear();
 
   const isInMyLyst = !id ? (
     <React.Fragment>
@@ -23,7 +24,7 @@ const Main = (props) => {
     <section className="movie-card">
       <div className="movie-card__bg">
         <img
-          src="img/bg-the-grand-budapest-hotel.jpg"
+          src="/img/bg-the-grand-budapest-hotel.jpg"
           alt="The Grand Budapest Hotel"
         />
       </div>
@@ -36,7 +37,7 @@ const Main = (props) => {
         <div className="movie-card__info">
           <div className="movie-card__poster">
             <img
-              src={`img/${src}.jpg`}
+              src={src}
               alt="The Grand Budapest Hotel poster"
               width="218"
               height="327"
@@ -47,7 +48,7 @@ const Main = (props) => {
             <h2 className="movie-card__title">{title}</h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{genre}</span>
-              <span className="movie-card__year">{years}</span>
+              <span className="movie-card__year">{year}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -76,4 +77,11 @@ const Main = (props) => {
   );
 };
 
+Main.propTypes = {
+  src: PropTypes.string,
+  title: PropTypes.string,
+  genre: PropTypes.string,
+  year: PropTypes.string,
+  id: PropTypes.string
+}
 export default Main;

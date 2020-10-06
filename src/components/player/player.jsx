@@ -1,12 +1,16 @@
 import React from 'react';
 
-const Player = () => {
+const Player = (props) => {
+  const id = props.match.params.id;
+  const {films} = props;
+  const film = films[id];
+  console.log(film);
   return (
     <div className="player">
       <video
         src="#"
         className="player__video"
-        poster="img/player-poster.jpg"
+        poster="/img/player-poster.jpg"
       ></video>
 
       <button type="button" className="player__exit">
