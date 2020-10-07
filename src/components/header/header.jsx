@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 const Header = (props) => {
-  const {className} = props;
+  const {className, Breadcrumbs, id} = props;
   return (
     <header className={`page-header movie-card__head ${className || ``}`}>
       <div className="logo">
@@ -13,7 +13,7 @@ const Header = (props) => {
           <span className="logo__letter logo__letter--3">W</span>
         </Link>
       </div>
-
+      {Breadcrumbs && <Breadcrumbs id={id} />}
       <div className="user-block">
         <div className="user-block__avatar">
           <Link to="/singin">
@@ -32,5 +32,7 @@ const Header = (props) => {
 
 Header.propTypes = {
   className: PropTypes.string,
+  Breadcrumbs: PropTypes.func,
+  id: PropTypes.string,
 };
 export default Header;
