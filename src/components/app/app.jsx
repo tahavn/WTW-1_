@@ -22,6 +22,7 @@ class App extends PureComponent {
     this.handlerSorted = this.handlerSorted.bind(this);
     this.handlerFilmMouseMove = this.handlerFilmMouseMove.bind(this);
     this.handlerFilmClick = this.handlerFilmClick.bind(this);
+    console.log(props);
   }
 
   componentDidMount() {
@@ -35,10 +36,14 @@ class App extends PureComponent {
     //   sortedFilms: newFilms,
     // });
   }
-  handlerFilmClick() {
-    console.log('click');
+  handlerFilmClick(history) {
+    // console.log(history);
+
+    history.push(`/films/${this.state.activeFilm.id}`);
   }
   handlerFilmMouseMove(film) {
+    // console.log(history);
+
     this.setState({
       activeFilm: film,
     });
@@ -63,17 +68,29 @@ class App extends PureComponent {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/">
-            <Main randomFilm={getRandomElement(films)} />
-            <Content
-              handlerFilmMouseMove={this.handlerFilmMouseMove}
-              handlerFilmClick={this.handlerFilmClick}
-              handlerSorted={this.handlerSorted}
-              tags={tags}
-              activeTag={this.state.sortedTag}
-              films={this.state.sortedFilms}
-            />
-          </Route>
+          <Route
+            exact
+            path="/"
+            render={(props) => {
+              return (
+                <>
+                  <Main randomFilm={getRandomElement(films)} />
+                  <Content
+                    {...props}
+                    handlerFilmMouseMove={this.handlerFilmMouseMove}
+                    handlerFilmClick={this.handlerFilmClick}
+                    handlerSorted={this.handlerSorted}
+                    tags={tags}
+                    activeTag={this.state.sortedTag}
+                    films={this.state.sortedFilms}
+                  />
+                </>
+              );
+            }}
+          />
+          {/* <Route exact path="/">
+
+          </Route> */}
           <Route path="/singin">
             <Singin />
           </Route>

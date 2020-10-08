@@ -4,10 +4,11 @@ import {NavLink} from 'react-router-dom';
 
 function CatalogItem(props) {
   const {film, handlerFilmMouseMove, handlerFilmClick} = props;
+
   return (
     <article
       onMouseMove={() => handlerFilmMouseMove(film)}
-      onClick={() => handlerFilmClick()}
+      onClick={() => handlerFilmClick(props.history)}
       className="small-movie-card catalog__movies-card"
     >
       <div className="small-movie-card__image">

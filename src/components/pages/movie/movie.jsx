@@ -13,7 +13,7 @@ const MoviePage = (props) => {
   const id = props.match.params.id;
   const {films} = props;
   const film = films[id];
-  const filmSlice = films.slice(0,5);
+  const filmSlice = films.slice(0,4);
   return (
     <>
       <section className="movie-card movie-card--full">

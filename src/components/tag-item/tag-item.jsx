@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const TagItem = (props) => {
   const {title, handlerSorted, activeTag} = props;
-  console.log(title,  activeTag);
   const handlerClick = (tagTitle, evt) => {
     evt.preventDefault();
     handlerSorted(tagTitle);

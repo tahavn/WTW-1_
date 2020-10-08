@@ -10,6 +10,7 @@ const CatalogList = (props) => {
         films.map((film) => {
           return (
             <CatalogItem
+              {...props}
               handlerFilmMouseMove={handlerFilmMouseMove}
               handlerFilmClick={handlerFilmClick}
               key={film.title}

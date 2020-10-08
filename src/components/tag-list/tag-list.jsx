@@ -3,7 +3,6 @@ import TagItem from '../tag-item/tag-item';
 import PropTypes from 'prop-types';
 const TagList = (props) => {
   const {items, handlerSorted, activeTag} = props;
-  console.log(props);
   return (
     <ul className="catalog__genres-list">
       <TagItem

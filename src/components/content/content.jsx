@@ -17,6 +17,7 @@ const Content = (props) => {
           items={tags}
         />
         <CatalogList
+          {...props}
           handlerFilmMouseMove={handlerFilmMouseMove}
           handlerFilmClick={handlerFilmClick}
           films={films}
