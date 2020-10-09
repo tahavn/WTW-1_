@@ -37,9 +37,7 @@ class App extends PureComponent {
     // });
   }
   handlerFilmClick(history) {
-    // console.log(history);
-
-    history.push(`/films/${this.state.activeFilm.id}`);
+    history.push(`/films/${this.state}`)
   }
   handlerFilmMouseMove(film) {
     // console.log(history);
