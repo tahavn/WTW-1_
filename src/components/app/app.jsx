@@ -10,6 +10,7 @@ import {getRandomElement} from '../../utils';
 import {films} from '../../../mocks/films';
 import {tags} from '../../../mocks/tags';
 import MylistPage from '../pages/mylist-page/mylist-page';
+import PlayerMyTest from '../player/player-test';
 
 class App extends PureComponent {
   constructor(props) {
@@ -36,7 +37,8 @@ class App extends PureComponent {
     // });
   }
   handlerFilmClick(history) {
-    history.push(`/films/${this.state}`)
+
+    // history.push(`/films/${this.state}`);
   }
   handlerFilmMouseMove(film) {
     // console.log(history);
@@ -122,6 +124,7 @@ class App extends PureComponent {
                   <br />
                   <small>Page not found</small>
                 </h1>
+                <PlayerMyTest/>
                 <Link to="/">Go to main page</Link>
               </>
             )}

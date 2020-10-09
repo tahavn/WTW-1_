@@ -20,10 +20,10 @@ class AddReview extends PureComponent {
   handleChange(event) {
     const {name, value} = event.target;
     this.setState({
-      [name]: value,
+      [name]: +value,
     });
-    console.log(this.state);
   }
+
   render() {
     const {id} = this.props.match.params;
     console.log(`рендер`);

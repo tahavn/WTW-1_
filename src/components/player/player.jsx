@@ -1,5 +1,4 @@
 import React, {PureComponent} from 'react';
-import {render} from 'react-dom';
 const TimeRanges = {
   MINUTES_IN_HOUR: 60,
   SECONDS_IN_MINUTE: 60,
@@ -18,10 +17,13 @@ class Player extends PureComponent {
 
     this._handleIsPlayingChange = this._handleIsPlayingChange.bind(this);
     this._handleSetFullScreen = this._handleSetFullScreen.bind(this);
+    this._leftTime = this._leftTime.bind(this);
   }
 
   componentDidMount() {
-    const {film} = this.props;
+    const id = this.props.match.params.id;
+    const {films} = this.props;
+    const film = films[id];
     const video = this.videoRef.current;
     video.src = film.srcMovie;
     video.play();
@@ -31,7 +33,7 @@ class Player extends PureComponent {
       });
     video.ontimeupdate = () =>
       this.setState({
-        currentTime: Math.trunc(video.current),
+        currentTime: Math.trunc(video.currentTime),
       });
   }
 
@@ -47,7 +49,7 @@ class Player extends PureComponent {
     }
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
     const video = this.videoRef.current;
 
     video.src = ``;
@@ -72,12 +74,12 @@ class Player extends PureComponent {
     const {currentTime, duration} = this.state;
     const timeDiff = duration - currentTime;
     const second = Math.trunc(timeDiff % TimeRanges.SECONDS_IN_MINUTE);
-    const minutes = Math.trunc(timeDiff % TimeRanges.SECONDS_IN_MINUTE);
-    const hours = Math.trunc(timeDiff % TimeRanges.MINUTES_IN_HOUR);
-
+    const minutes = Math.trunc(timeDiff / TimeRanges.SECONDS_IN_MINUTE);
+    const hours = Math.trunc(minutes / TimeRanges.MINUTES_IN_HOUR);
     return `${hours.toString().padStart(2, `0`)}:${minutes
       .toString()
-      .padStart(2, `0`)}${second.toString().padStart(2, `0`)}`;
+      .padStart(2, `0`)}:${second.toString().padStart(2, `0`)}`;
+
   }
   // const playerToggler = (currentTime * 100) / duration + `%`;
 
@@ -105,7 +107,6 @@ class Player extends PureComponent {
       <div className="player">
         <video
           ref={this.videoRef}
-          
           className="player__video"
           poster="/img/player-poster.jpg"
         ></video>
@@ -119,25 +120,25 @@ class Player extends PureComponent {
             <div className="player__time">
               <progress
                 className="player__progress"
-                value="30"
+                value={`${currentTime / duration * 100}`}
                 max="100"
               ></progress>
-              <div className="player__toggler" style={{left: '30%'}}>
+              <div className="player__toggler" style={{left: `${currentTime / duration * 100}%`}}>
                 Toggler
               </div>
             </div>
-            <div className="player__time-value">1:30:29</div>
+            <div className="player__time-value">{this._leftTime()}</div>
           </div>
 
           <div className="player__controls-row">
             <button
               type="button"
               className="player__play"
-              onClick={() => this._handlePlayingChange()}
+              onClick={() => this._handleIsPlayingChange()}
             >
               {btnIsPlaying}
             </button>
-            <div className="player__name">Transpotting</div>
+            <div className="player__name">{this._leftTime()}</div>
 
             <button type="button" className="player__full-screen">
               <svg viewBox="0 0 27 27" width="27" height="27">
