@@ -54,6 +54,16 @@ class PlayerMyTest extends PureComponent {
       };
     });
   }
+  leftTime() {
+    const {duration, current} = this.state;
+    const timeDiff = duration - current;
+    const second = Math.trunc(timeDiff % 60);
+    const minuts = Math.trunc(timeDiff / 60);
+    const hours = Math.trunc(timeDiff / 60);
+    return `${hours.toString().padStart(2, `0`)}:${minuts
+      .toString()
+      .padStart(2, `0`)}:${second.toString().padStart(2, `0`)}`;
+  }
   render() {
     const {isPlaying, duration, current} = this.state;
     return (
@@ -61,6 +71,8 @@ class PlayerMyTest extends PureComponent {
         <button onClick={this.hanlerChangePlaing}>
           {isPlaying ? `Stop` : `Play`}
         </button>
+        <progress value={`${current / duration * 100}`} max="100"></progress>
+        <span>{this.leftTime()}</span> 
         <video ref={this.videoCur}></video>
       </div>
     );

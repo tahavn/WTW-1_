@@ -11,7 +11,9 @@ import {films} from '../../../mocks/films';
 import {tags} from '../../../mocks/tags';
 import MylistPage from '../pages/mylist-page/mylist-page';
 import PlayerMyTest from '../player/player-test';
+import withPlayer from '../hocs/withPlayer/withPlayer';
 
+const VideoWrappedPlayer = withPlayer(Player);
 class App extends PureComponent {
   constructor(props) {
     super();
@@ -112,7 +114,8 @@ class App extends PureComponent {
           <Route
             path="/player/:id"
             render={(props) => {
-              return <Player {...props} films={films} />;
+              const selectedID = +props.match.params.id;
+              return <VideoWrappedPlayer selectedID={selectedID} {...props} selectedFilm={films} />;
             }}
           />
 
