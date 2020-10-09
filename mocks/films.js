@@ -5,6 +5,7 @@ import {articles} from './articles';
 const titles = articles.map((item) => {
   return item.title;
 });
+
 const stringForDescription = [
   `Beautiful & luxurious apartment at great location`,
   `Nice, cozy, wood and stone place`,
@@ -28,6 +29,7 @@ const getMovies = (array) => {
     acc.push({
       id: index,
       title: movie,
+      srcMovie: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       genre: getRandomElement(genres),
       rating: Math.floor(Math.random() * 5),
       descriptin: `${getRandomElement(stringForDescription)} ${getRandomElement(

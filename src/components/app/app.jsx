@@ -22,7 +22,6 @@ class App extends PureComponent {
     this.handlerSorted = this.handlerSorted.bind(this);
     this.handlerFilmMouseMove = this.handlerFilmMouseMove.bind(this);
     this.handlerFilmClick = this.handlerFilmClick.bind(this);
-    console.log(props);
   }
 
   componentDidMount() {
