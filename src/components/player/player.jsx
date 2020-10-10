@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 const Player = (props) => {
   // const playerToggler = (currentTime * 100) / duration + `%`;
 
@@ -77,6 +77,16 @@ const Player = (props) => {
       </div>
     </div>
   );
+};
+
+Player.propTypes = {
+  isPlaying: PropTypes.bool,
+  currentTime: PropTypes.number,
+  duration: PropTypes.number,
+  children: PropTypes.node,
+  onIsPlayingChange: PropTypes.func,
+  leftTime: PropTypes.func,
+  onSetFullScreen: PropTypes.func,
 };
 
 export default Player;

@@ -92,7 +92,7 @@ const withPlayerControl = (Component) => {
           isPlaying={this.state.isPlaying}
           duration={this.state.duration}
         >
-          <video ref={this.videoRef}>
+          <video className="player__video" ref={this.videoRef}>
             your browser doesn`t support embedded videos
           </video>
         </Component>

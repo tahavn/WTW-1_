@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CatalogItem from '../catalog-item/catalog-item';
-
+import SmallMovieCard from '../small-movie-card/small-movie-card';
+import withSmallPlayer from '../hocs/with-small-player/with-small-player';
+const SmallMovieCardWrapped = withSmallPlayer(SmallMovieCard);
 const CatalogList = (props) => {
   const {films, handlerFilmMouseMove, handlerFilmClick} = props;
   return (
@@ -9,7 +10,7 @@ const CatalogList = (props) => {
       {films &&
         films.map((film) => {
           return (
-            <CatalogItem
+            <SmallMovieCardWrapped
               {...props}
               handlerFilmMouseMove={handlerFilmMouseMove}
               handlerFilmClick={handlerFilmClick}
