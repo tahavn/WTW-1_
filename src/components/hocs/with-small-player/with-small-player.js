@@ -15,10 +15,9 @@ const withSmallPlayer = (Component) => {
       this._handleIsPlayingChange = this._handleIsPlayingChange.bind(this);
     }
 
-    _handleIsPlayingChange() {
-      const {isPlaying} = this.state;
+    _handleIsPlayingChange(isPlaying) {
       this.setState({
-        isPlaying: !isPlaying,
+        isPlaying,
       });
     }
 
@@ -30,8 +29,7 @@ const withSmallPlayer = (Component) => {
           {...this.props}
           onIsPlayingChange={this._handleIsPlayingChange}
           isPlaying={this.state.isPlaying}
-        >
-        </Component>
+        ></Component>
       );
     }
   }

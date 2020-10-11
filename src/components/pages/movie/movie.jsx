@@ -10,10 +10,9 @@ import Footer from '../../footer/footer';
 import CatalogList from '../../catalog-list/catalog-list';
 
 const MoviePage = (props) => {
-  const id = props.match.params.id;
-  const {films} = props;
-  const film = films[id];
-  const filmSlice = films.slice(0,4);
+  const {films, history, selectedID} = props;
+  const film = films[selectedID];
+  const filmSlice = films.slice(0, 4);
   return (
     <>
       <section className="movie-card movie-card--full">
@@ -35,6 +34,7 @@ const MoviePage = (props) => {
 
               <div className="movie-card__buttons">
                 <button
+                  onClick={() => history.push(`/player/${selectedID}`)}
                   className="btn btn--play movie-card__button"
                   type="button"
                 >
@@ -52,7 +52,14 @@ const MoviePage = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">
+                <a
+                  onClick={(event) => {
+                    event.preventDefault();
+                    history.push(`/films/${selectedID}/review`);
+                  }}
+                  href="add-review.html"
+                  className="btn movie-card__button"
+                >
                   Add review
                 </a>
               </div>
@@ -81,7 +88,7 @@ const MoviePage = (props) => {
           {/* <div className="catalog__movies-list">
             <SmallMovieCard />
           </div> */}
-          <CatalogList films={filmSlice} />
+          <CatalogList history={history} films={filmSlice} />
         </section>
 
         <Footer />

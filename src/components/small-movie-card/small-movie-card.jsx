@@ -1,6 +1,5 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {NavLink} from 'react-router-dom';
 import VideoPlayer from '../video-player/video-player';
 
 class SmallMovieCard extends PureComponent {
@@ -15,7 +14,7 @@ class SmallMovieCard extends PureComponent {
   }
 
   render() {
-    const {film, isPlaying, onIsPlayingChange, handlerFilmClick} = this.props;
+    const {film, isPlaying, onIsPlayingChange, history} = this.props;
     return (
       <article
         onMouseEnter={() => {
@@ -27,12 +26,17 @@ class SmallMovieCard extends PureComponent {
           clearTimeout(this.timeout);
           onIsPlayingChange(false);
         }}
-        onClick={() => handlerFilmClick(props.history)}
+        onClick={() => history.push(`/films/${film.id}`)}
         className="small-movie-card catalog__movies-card"
       >
         <div className="small-movie-card__image">
           {/* <img src={film.src} alt={`${film.title}`} width="280" height="175" /> */}
-          <VideoPlayer poster={film.src} muted isPlaying={isPlaying} src={film.srcMovie} />
+          <VideoPlayer
+            poster={film.src}
+            muted
+            isPlaying={isPlaying}
+            src={film.srcMovie}
+          />
         </div>
         <h3 className="small-movie-card__title">
           <a
@@ -50,9 +54,15 @@ class SmallMovieCard extends PureComponent {
 }
 
 SmallMovieCard.propTypes = {
+  history: PropTypes.object,
+  isPlaying: PropTypes.bool,
+  onIsPlayingChange: PropTypes.func,
+  handlerFilmClick: PropTypes.func,
   film: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string,
     src: PropTypes.string,
+    srcMovie: PropTypes.string,
   }).isRequired,
   handlerFilmMouseMove: PropTypes.func,
 };

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Footer from '../footer/footer';
 
 const Content = (props) => {
-  const {films, tags, handlerSorted, activeTag, handlerFilmMouseMove,handlerFilmClick} = props;
+  const {films, tags, handlerSorted, activeTag, history} = props;
   return (
     <div className="page-content">
       <section className="catalog">
@@ -16,12 +16,7 @@ const Content = (props) => {
           handlerSorted={handlerSorted}
           items={tags}
         />
-        <CatalogList
-          {...props}
-          handlerFilmMouseMove={handlerFilmMouseMove}
-          handlerFilmClick={handlerFilmClick}
-          films={films}
-        />
+        <CatalogList history={history} films={films} />
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">

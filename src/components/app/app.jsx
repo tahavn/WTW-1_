@@ -39,7 +39,6 @@ class App extends PureComponent {
     // });
   }
   handlerFilmClick(history) {
-
     // history.push(`/films/${this.state}`);
   }
   handlerFilmMouseMove(film) {
@@ -72,14 +71,12 @@ class App extends PureComponent {
           <Route
             exact
             path="/"
-            render={(props) => {
+            render={(routerProps) => {
               return (
                 <>
                   <Main randomFilm={getRandomElement(films)} />
                   <Content
-                    {...props}
-                    handlerFilmMouseMove={this.handlerFilmMouseMove}
-                    handlerFilmClick={this.handlerFilmClick}
+                    history={routerProps.history}
                     handlerSorted={this.handlerSorted}
                     tags={tags}
                     activeTag={this.state.sortedTag}
@@ -97,15 +94,22 @@ class App extends PureComponent {
           </Route>
           <Route
             path="/films/:id/review"
-            render={(props) => {
-              return <Addreview {...props} films={films} />;
+            render={(routerProps) => {
+              return <Addreview {...routerProps} films={films} />;
             }}
           />
           <Route
             path="/films/:id"
             exact
-            render={(props) => {
-              return <MoviePage {...props} films={films} />;
+            render={(routerProps) => {
+              const selectedID = +routerProps.match.params.id;
+              return (
+                <MoviePage
+                  selectedID={selectedID}
+                  history={routerProps.history}
+                  films={films}
+                />
+              );
             }}
           />
           <Route path="/mylist">
@@ -115,7 +119,13 @@ class App extends PureComponent {
             path="/player/:id"
             render={(props) => {
               const selectedID = +props.match.params.id;
-              return <VideoWrappedPlayer selectedID={selectedID} {...props} selectedFilm={films} />;
+              return (
+                <VideoWrappedPlayer
+                  selectedID={selectedID}
+                  {...props}
+                  selectedFilm={films}
+                />
+              );
             }}
           />
 
@@ -127,7 +137,7 @@ class App extends PureComponent {
                   <br />
                   <small>Page not found</small>
                 </h1>
-                <PlayerMyTest/>
+                <PlayerMyTest />
                 <Link to="/">Go to main page</Link>
               </>
             )}
