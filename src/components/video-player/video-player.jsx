@@ -7,17 +7,23 @@ class VideoPlayer extends PureComponent {
     this.videoRef = React.createRef();
   }
   componentDidMount() {
-    const {muted} = this.props;
+    const {muted,src,isPlaying} = this.props;
     const video = this.videoRef.current;
-
     video.muted = muted;
+    if (isPlaying) {
+      video.src = src;
+      video.play();
+    } else {
+      video.src = ``;
+      video.pause();
+    }
   }
 
   componentDidUpdate() {
     const video = this.videoRef.current;
     const {src, isPlaying} = this.props;
-
     video.src = src;
+
 
     if (isPlaying) {
       video.play();
@@ -29,6 +35,7 @@ class VideoPlayer extends PureComponent {
     const video = this.videoRef.current;
 
     video.src = ``;
+
     video.muted = null;
     video.onplay = null;
   }

@@ -7,10 +7,9 @@ const withSmallPlayer = (Component) => {
       super(props);
 
       this.state = {
-        isPlaying: true,
+        isPlaying: false,
       };
 
-      this.videoRef = React.createRef();
 
       this._handleIsPlayingChange = this._handleIsPlayingChange.bind(this);
     }
