@@ -1,6 +1,6 @@
-import React, {useState, useEffect, PureComponent} from 'react';
+import React, { PureComponent} from 'react';
 import Main from '../main/main';
-import Content from '../content/content';
+// import Content from '../content/content';
 import Singin from '../singin/singin';
 import Addreview from '../addreview/addreview';
 import MoviePage from '../pages/movie/movie';
@@ -8,12 +8,15 @@ import Player from '../player/player';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 import {getRandomElement} from '../../utils';
 import {films} from '../../../mocks/films';
-import {tags} from '../../../mocks/tags';
+
 import MylistPage from '../pages/mylist-page/mylist-page';
 import PlayerMyTest from '../player/player-test';
 import withPlayer from '../hocs/withPlayer/withPlayer';
+import withTags from '../hocs/with-tags/with-tags';
+
 
 const VideoWrappedPlayer = withPlayer(Player);
+const MainWithTags = withTags(Main);
 class App extends PureComponent {
   constructor(props) {
     super();
@@ -73,16 +76,10 @@ class App extends PureComponent {
             path="/"
             render={(routerProps) => {
               return (
-                <>
-                  <Main randomFilm={getRandomElement(films)} />
-                  <Content
-                    history={routerProps.history}
-                    handlerSorted={this.handlerSorted}
-                    tags={tags}
-                    activeTag={this.state.sortedTag}
-                    films={this.state.sortedFilms}
-                  />
-                </>
+                <MainWithTags
+                  history={routerProps.history}
+                  randomFilm={getRandomElement(films)}
+                />
               );
             }}
           />

@@ -19,7 +19,6 @@ class SmallMovieCard extends PureComponent {
       <article
         onMouseEnter={() => {
           this.timeout = setTimeout(() => {
-            console.log('хуй')
             onIsPlayingChange(true);
           }, 1000);
         }}
