@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Content from '../content/content';
 const Main = (props) => {
-  const {src, title, genre, year, id} = props.randomFilm;
+  const {src, id, title, genre, year} = props.randomFilm;
+  const {history, handlerSorted, tags, activeTag, films} = props;
   // const years = year.getFullYear();
 
   const isInMyLyst = !id ? (
@@ -20,7 +21,6 @@ const Main = (props) => {
       </svg>
     </React.Fragment>
   );
-    console.log(props)
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -77,21 +77,28 @@ const Main = (props) => {
         </div>
       </section>
       <Content
-        history={props.history}
-        handlerSorted={props.handlerSorted}
-        tags={props.tags}
-        activeTag={props.activeTag}
-        films={props.films}
+        history={history}
+        handlerSorted={handlerSorted}
+        tags={tags}
+        activeTag={activeTag}
+        films={films}
       />
     </React.Fragment>
   );
 };
 
 Main.propTypes = {
-  src: PropTypes.string,
-  title: PropTypes.string,
-  genre: PropTypes.string,
-  year: PropTypes.string,
-  id: PropTypes.string,
+  randomFilm: PropTypes.shape({
+    src: PropTypes.string,
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    year: PropTypes.number,
+    id: PropTypes.number,
+  }),
+  history: PropTypes.object,
+  handlerSorted: PropTypes.func,
+  tags: PropTypes.array,
+  activeTag: PropTypes.string,
+  films: PropTypes.array,
 };
 export default Main;

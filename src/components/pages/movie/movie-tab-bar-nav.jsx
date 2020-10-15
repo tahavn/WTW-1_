@@ -65,5 +65,7 @@ class MovieTabBar extends PureComponent {
     );
   }
 }
-
+MovieTabBar.propTypes = {
+  children: PropTypes.node,
+};
 export default MovieTabBar;

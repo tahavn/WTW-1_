@@ -12,7 +12,9 @@ import CatalogList from '../../catalog-list/catalog-list';
 const MoviePage = (props) => {
   const {films, history, selectedID} = props;
   const film = films[selectedID];
-  const filmSlice = films.slice(0, 4);
+  const filmByGenre = films.filter((filmers) => {
+    return filmers.genre === film.genre && filmers.id !== selectedID;
+  });
   return (
     <>
       <section className="movie-card movie-card--full">
@@ -74,9 +76,9 @@ const MoviePage = (props) => {
             </div>
 
             <MovieTabBar>
-              <MovieOverview label="Overview" />
-              <MovieDetails label="Details" />
-              <MovieReview label="Review" />
+              <MovieOverview film={film} label="Overview" />
+              <MovieDetails film={film} label="Details" />
+              <MovieReview film={film} label="Review" />
             </MovieTabBar>
           </div>
         </div>
@@ -88,7 +90,7 @@ const MoviePage = (props) => {
           {/* <div className="catalog__movies-list">
             <SmallMovieCard />
           </div> */}
-          <CatalogList history={history} films={filmSlice} />
+          <CatalogList history={history} films={filmByGenre} />
         </section>
 
         <Footer />

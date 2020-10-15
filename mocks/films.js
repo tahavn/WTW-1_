@@ -32,11 +32,83 @@ const getMovies = (array) => {
       srcMovie: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       genre: getRandomElement(genres),
       rating: Math.floor(Math.random() * 5),
+      countRating: 240,
       descriptin: `${getRandomElement(stringForDescription)} ${getRandomElement(
         stringForDescription
       )} ${getRandomElement(stringForDescription)}`,
       year: randomDate().getFullYear(),
       src: `/img/${encodeText(movie)}.jpg`,
+      director: `Wes Andreson`,
+      starring: [
+        `Bill Murray`,
+        `Edward Norton`,
+        `Jude Law`,
+        `Willem Dafoe`,
+        `and other`,
+      ],
+      reviews: [
+        {
+          description: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of 
+                        one of the director's funniest and most exquisitely designed movies in years.`,
+          author: `Kate Muir one`,
+          date: `December 24, 2016`,
+          rating: `8.9`,
+        },
+        {
+          description: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of 
+                        one of the director's funniest and most exquisitely designed movies in years.`,
+          author: `Kate Muir one one`,
+          date: `December 24, 2016`
+        },
+        {
+          description: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of 
+                        one of the director's funniest and most exquisitely designed movies in years.`,
+          author: `Kate Muir two`,
+          date: `December 24, 2016`
+        },
+        {
+          description: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of 
+                        one of the director's funniest and most exquisitely designed movies in years.`,
+          author: `Kate Muir two two`,
+          date: `December 24, 2016`
+        },
+        {
+          description: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of 
+                        one of the director's funniest and most exquisitely designed movies in years.`,
+          author: `Kate Muir one one`,
+          date: `December 24, 2016`
+        },
+        {
+          description: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of 
+                        one of the director's funniest and most exquisitely designed movies in years.`,
+          author: `Kate Muir two`,
+          date: `December 24, 2016`
+        },
+        {
+          description: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of 
+                        one of the director's funniest and most exquisitely designed movies in years.`,
+          author: `Kate Muir two two`,
+          date: `December 24, 2016`
+        },
+        {
+          description: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of 
+                        one of the director's funniest and most exquisitely designed movies in years.`,
+          author: `Kate Muir one one`,
+          date: `December 24, 2016`
+        },
+        {
+          description: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of 
+                        one of the director's funniest and most exquisitely designed movies in years.`,
+          author: `Kate Muir two`,
+          date: `December 24, 2016`
+        },
+        {
+          description: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of 
+                        one of the director's funniest and most exquisitely designed movies in years.`,
+          author: `Kate Muir two two`,
+          date: `December 24, 2016`
+        },
+      ],
     });
     return acc;
   }, []);
