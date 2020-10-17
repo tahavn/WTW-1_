@@ -3,6 +3,7 @@ import Header from '../header/header';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Content from '../content/content';
+
 const Main = (props) => {
   const {src, id, title, genre, year} = props.randomFilm;
   const {history, handlerSorted, tags, activeTag, films} = props;
@@ -101,4 +102,6 @@ Main.propTypes = {
   activeTag: PropTypes.string,
   films: PropTypes.array,
 };
+
+
 export default Main;

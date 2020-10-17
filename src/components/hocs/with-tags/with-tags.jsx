@@ -2,7 +2,12 @@ import React, {PureComponent} from 'react';
 import {films} from '../../../../mocks/films';
 import {tags} from '../../../../mocks/tags';
 import {getRandomElement} from '../../../utils';
-
+import {connect} from 'react-redux';
+import {
+  getFilmsByGenre,
+  getActiveTag,
+} from '../../../store/show-films/selector';
+import {ActionCreator} from '../../../store/show-films/show-films';
 const withTags = (Component) => {
   class WithTags extends PureComponent {
     constructor(props) {
@@ -12,7 +17,7 @@ const withTags = (Component) => {
         sortedTag: `All genres`,
         activeFilm: null,
       };
-      this.handlerSorted = this.handlerSorted.bind(this);
+      // this.handlerSorted = this.handlerSorted.bind(this);
       this.handlerFilmMouseMove = this.handlerFilmMouseMove.bind(this);
       // this.handlerFilmClick = this.handlerFilmClick.bind(this);
     }
@@ -37,35 +42,43 @@ const withTags = (Component) => {
       });
     }
 
-    handlerSorted(activeTag) {
-      this.setState({
-        sortedTag: activeTag,
-      });
-      const newFilms = films.filter((item) => {
-        if (this.state.sortedTag === `All genres`) {
-          return item;
-        }
-        return item.genre === this.state.sortedTag;
-      });
-      this.setState({
-        sortedFilms: newFilms,
-      });
-    }
+    // handlerSorted(activeTag) {
+    //   this.setState({
+    //     sortedTag: activeTag,
+    //   });
+    //   const newFilms = films.filter((item) => {
+    //     if (this.state.sortedTag === `All genres`) {
+    //       return item;
+    //     }
+    //     return item.genre === this.state.sortedTag;
+    //   });
+    //   this.setState({
+    //     sortedFilms: newFilms,
+    //   });
+    // }
     render() {
       return (
         <Component
           {...this.props}
           randomFilm={getRandomElement(films)}
-          handlerSorted={this.handlerSorted}
+          handlerSorted={this.props.handlerSorted}
           tags={tags}
-          activeTag={this.state.sortedTag}
-          films={this.state.sortedFilms}
+          activeTag={this.props.tag}
+          films={this.props.films}
         />
       );
     }
   }
-
-  return WithTags;
+  const mapStateToProps = (state) => ({
+    films: getFilmsByGenre(state),
+    tag: getActiveTag(state),
+  });
+  const mapDispatchToProps = (dispatch) => ({
+    handlerSorted(activeTag) {
+      dispatch(ActionCreator.chooseGenre(activeTag));
+    },
+  });
+  return connect(mapStateToProps, mapDispatchToProps)(WithTags);
 };
 
 export default withTags;
