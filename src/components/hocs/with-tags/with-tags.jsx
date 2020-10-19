@@ -18,50 +18,16 @@ const withTags = (Component) => {
         activeFilm: null,
       };
       // this.handlerSorted = this.handlerSorted.bind(this);
-      this.handlerFilmMouseMove = this.handlerFilmMouseMove.bind(this);
       // this.handlerFilmClick = this.handlerFilmClick.bind(this);
     }
 
-    componentDidMount() {
-      this.setState({
-        sortedFilms: films,
-      });
-    }
-    componentDidUpdate() {
-      // const newFilms = this.handlerSorted();
-      // this.setState({
-      //   sortedFilms: newFilms,
-      // });
-    }
-
-    handlerFilmMouseMove(film) {
-      // console.log(history);
-
-      this.setState({
-        activeFilm: film,
-      });
-    }
-
-    // handlerSorted(activeTag) {
-    //   this.setState({
-    //     sortedTag: activeTag,
-    //   });
-    //   const newFilms = films.filter((item) => {
-    //     if (this.state.sortedTag === `All genres`) {
-    //       return item;
-    //     }
-    //     return item.genre === this.state.sortedTag;
-    //   });
-    //   this.setState({
-    //     sortedFilms: newFilms,
-    //   });
-    // }
     render() {
       return (
         <Component
           {...this.props}
           randomFilm={getRandomElement(films)}
           handlerSorted={this.props.handlerSorted}
+          handleSelectedFilms={this.props.handleSelectedFilms}
           tags={tags}
           activeTag={this.props.tag}
           films={this.props.films}
@@ -76,6 +42,9 @@ const withTags = (Component) => {
   const mapDispatchToProps = (dispatch) => ({
     handlerSorted(activeTag) {
       dispatch(ActionCreator.chooseGenre(activeTag));
+    },
+    handleSelectedFilms(film) {
+      dispatch(ActionCreator.chooseFilm(film));
     },
   });
   return connect(mapStateToProps, mapDispatchToProps)(WithTags);

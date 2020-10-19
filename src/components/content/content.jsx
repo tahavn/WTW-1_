@@ -5,7 +5,14 @@ import PropTypes from 'prop-types';
 import Footer from '../footer/footer';
 
 const Content = (props) => {
-  const {films, tags, handlerSorted, activeTag, history} = props;
+  const {
+    films,
+    tags,
+    onSelectedFilm,
+    activeTag,
+    handlerSorted,
+    history,
+  } = props;
   return (
     <div className="page-content">
       <section className="catalog">
@@ -16,7 +23,11 @@ const Content = (props) => {
           handlerSorted={handlerSorted}
           items={tags}
         />
-        <CatalogList history={history} films={films} />
+        <CatalogList
+          history={history}
+          films={films}
+          onSelectedFilm={onSelectedFilm}
+        />
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">
@@ -35,6 +46,7 @@ Content.propTypes = {
   tags: PropTypes.array,
   handlerSorted: PropTypes.func,
   handlerFilmMouseMove: PropTypes.func,
+  handleSelectedFilms: PropTypes.func,
   activeTag: PropTypes.string,
 };
 

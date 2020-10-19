@@ -1,10 +1,14 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card';
 import withSmallPlayer from '../hocs/with-small-player/with-small-player';
+import {ActionCreator} from '../../store/show-films/show-films';
 const SmallMovieCardWrapped = withSmallPlayer(SmallMovieCard);
+
 const CatalogList = (props) => {
-  const {films, history} = props;
+  const {films, history, onSelectedFilm} = props;
+  console.log(onSelectedFilm)
   return (
     <div className="catalog__movies-list">
       {films &&
@@ -14,6 +18,7 @@ const CatalogList = (props) => {
               history={history}
               key={film.title}
               film={film}
+              onSelectedFilm={onSelectedFilm}
             />
           );
         })}
@@ -25,6 +30,7 @@ CatalogList.propTypes = {
   history: PropTypes.object,
   films: PropTypes.array,
   handlerFilmMouseMove: PropTypes.func,
+  handleSelectedFilms: PropTypes.func,
 };
 
 export default CatalogList;

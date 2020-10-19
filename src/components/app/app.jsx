@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import Main from '../main/main';
 // import Content from '../content/content';
 import Singin from '../singin/singin';
@@ -6,7 +6,7 @@ import Addreview from '../addreview/addreview';
 import MoviePage from '../pages/movie/movie';
 import Player from '../player/player';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
-import {getRandomElement} from '../../utils';
+
 import {films} from '../../../mocks/films';
 
 import MylistPage from '../pages/mylist-page/mylist-page';
@@ -16,7 +16,9 @@ import withTags from '../hocs/with-tags/with-tags';
 
 const VideoWrappedPlayer = withPlayer(Player);
 const MainWithTags = withTags(Main);
-const App = (props) => {
+
+
+const App = () => {
   return (
     <BrowserRouter>
       <Switch>
@@ -27,7 +29,6 @@ const App = (props) => {
             return (
               <MainWithTags
                 history={routerProps.history}
-                randomFilm={getRandomElement(films)}
               />
             );
           }}

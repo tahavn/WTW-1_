@@ -3,10 +3,18 @@ import Header from '../header/header';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Content from '../content/content';
+import {getRandomElement} from '../../utils';
 
 const Main = (props) => {
-  const {src, id, title, genre, year} = props.randomFilm;
-  const {history, handlerSorted, tags, activeTag, films} = props;
+  const {
+    history,
+    handlerSorted,
+    handleSelectedFilms,
+    tags,
+    activeTag,
+    films,
+  } = props;
+  const {src, id, title, genre, year} = getRandomElement(films);
   // const years = year.getFullYear();
 
   const isInMyLyst = !id ? (
@@ -79,7 +87,7 @@ const Main = (props) => {
       </section>
       <Content
         history={history}
-        handlerSorted={handlerSorted}
+        onSelectedFilm={handleSelectedFilms}
         tags={tags}
         activeTag={activeTag}
         films={films}
@@ -98,10 +106,10 @@ Main.propTypes = {
   }),
   history: PropTypes.object,
   handlerSorted: PropTypes.func,
+  handleSelectedFilms: PropTypes.func,
   tags: PropTypes.array,
   activeTag: PropTypes.string,
   films: PropTypes.array,
 };
-
 
 export default Main;
