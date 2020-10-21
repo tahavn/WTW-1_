@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Content from '../content/content';
 import {getRandomElement} from '../../utils';
-
 const Main = (props) => {
   const {
     history,
@@ -13,6 +12,7 @@ const Main = (props) => {
     tags,
     activeTag,
     films,
+    isLoading
   } = props;
   const {src, id, title, genre, year} = getRandomElement(films);
   // const years = year.getFullYear();
@@ -88,9 +88,11 @@ const Main = (props) => {
       <Content
         history={history}
         onSelectedFilm={handleSelectedFilms}
+        handlerSorted={handlerSorted}
         tags={tags}
         activeTag={activeTag}
         films={films}
+        isLoading={isLoading}
       />
     </React.Fragment>
   );

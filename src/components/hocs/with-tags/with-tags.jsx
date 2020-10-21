@@ -3,6 +3,8 @@ import {films} from '../../../../mocks/films';
 import {tags} from '../../../../mocks/tags';
 import {getRandomElement} from '../../../utils';
 import {connect} from 'react-redux';
+import {getIsLoading} from '../../../store/data/selector';
+
 import {
   getFilmsByGenre,
   getActiveTag,
@@ -31,6 +33,7 @@ const withTags = (Component) => {
           tags={tags}
           activeTag={this.props.tag}
           films={this.props.films}
+          isLoading={this.props.isLoading}
         />
       );
     }
@@ -38,6 +41,7 @@ const withTags = (Component) => {
   const mapStateToProps = (state) => ({
     films: getFilmsByGenre(state),
     tag: getActiveTag(state),
+    isLoading: getIsLoading(state),
   });
   const mapDispatchToProps = (dispatch) => ({
     handlerSorted(activeTag) {
