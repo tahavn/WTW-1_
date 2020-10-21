@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-
+import {connect} from 'react-redux';
+import {getUser} from '../../store/user/selector';
 const Header = (props) => {
   const {className, Breadcrumbs, id} = props;
   return (
@@ -15,16 +16,21 @@ const Header = (props) => {
       </div>
       {Breadcrumbs && <Breadcrumbs id={id} />}
       <div className="user-block">
-        <div className="user-block__avatar">
-          <Link to="/singin">
+        {props.user && (
+          <div className="user-block__avatar">
             <img
               src="/img/avatar.jpg"
               alt="User avatar"
               width="63"
               height="63"
             />
+          </div>
+        )}
+        {!props.user && (
+          <Link to="/singin" className="user-block__link">
+              Sign in
           </Link>
-        </div>
+        )}
       </div>
     </header>
   );
@@ -35,4 +41,9 @@ Header.propTypes = {
   Breadcrumbs: PropTypes.func,
   id: PropTypes.string,
 };
-export default Header;
+
+const mapStateToProps = (state) => ({
+  user: getUser(state),
+});
+
+export default connect(mapStateToProps)(Header);

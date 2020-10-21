@@ -15,4 +15,4 @@ const getFilmsByGenre = (state) => {
   });
 };
 
-export {getFilmsByGenre,getActiveTag};
+export {getFilmsByGenre, getActiveTag};

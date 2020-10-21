@@ -1,5 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {
+  getUser,
+  getSelectedFilms,
+  hasSelectedFilms,
+} from '../../../store/user/selector';
+import {ActionCreator} from '../../../store/user/reducer';
+
 import Header from '../../header/header';
 import MovieTabBar from './movie-tab-bar-nav';
 import MovieDetails from './movie-details';
@@ -10,7 +18,8 @@ import Footer from '../../footer/footer';
 import CatalogList from '../../catalog-list/catalog-list';
 
 const MoviePage = (props) => {
-  const {films, history, selectedID} = props;
+  const {films, history, selectedID, isSelect} = props;
+  console.log(`isSelect`);
   const film = films[selectedID];
   const filmByGenre = films.filter((filmers) => {
     return filmers.genre === film.genre && filmers.id !== selectedID;
@@ -48,10 +57,20 @@ const MoviePage = (props) => {
                 <button
                   className="btn btn--list movie-card__button"
                   type="button"
+                  onClick={()=>props.addFilm(film)}
                 >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
+                  {isSelect && (
+                    <svg viewBox="0 0 18 14" width="18" height="14">
+                      <use xlinkHref="#in-list"></use>
+                    </svg>
+                  )}
+                  {!isSelect && (
+                    <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
+                  )}
+                 
+
                   <span>My list</span>
                 </button>
                 <a
@@ -102,5 +121,14 @@ const MoviePage = (props) => {
 MoviePage.propTypes = {
   id: PropTypes.number,
 };
-
-export default MoviePage;
+const mapStateToProps = (state) => ({
+  user: getUser(state),
+  selectedFilms: getSelectedFilms(state),
+  isSelect: hasSelectedFilms(state),
+});
+const mapDispatchToProps = (dispaptch) => ({
+  addFilm: (film) => {
+    dispaptch(ActionCreator.selectedFilm(film));
+  },
+});
+export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);

@@ -1,6 +1,9 @@
 import React, {PureComponent} from 'react';
 import Footer from '../footer/footer';
 import Header from '../header/header';
+import {connect} from 'react-redux';
+import {getUser} from '../../store/user/selector';
+import {ActionCreator} from '../../store/user/reducer';
 
 class Singin extends PureComponent {
   constructor() {
@@ -15,6 +18,10 @@ class Singin extends PureComponent {
   }
   handleSubmit(event) {
     event.preventDefault();
+    this.props.singIn({
+      name: this.state[`user-email`],
+      password: this.state[`user-password`],
+    });
   }
   handleChange(event) {
     event.preventDefault();
@@ -26,60 +33,69 @@ class Singin extends PureComponent {
   render() {
     return (
       <div className="user-page">
-        <Header className={`user-page__head`}/>
+        <Header className={`user-page__head`} />
 
         <div className="sign-in user-page__content">
-          <form
-            onSubmit={this.handleSubmit}
-            action="#"
-            className="sign-in__form"
-          >
-            <div className="sign-in__fields">
-              <div className="sign-in__field">
-                <input
-                  className="sign-in__input"
-                  type="email"
-                  placeholder="Email address"
-                  name="user-email"
-                  id="user-email"
-                  onChange={this.handleChange}
-                />
-                <label
-                  className="sign-in__label visually-hidden"
-                  htmlFor="user-email"
-                >
-                  Email address
-                </label>
+          {!this.props.user  && (
+            <form
+              onSubmit={this.handleSubmit}
+              action="#"
+              className="sign-in__form"
+            >
+              <div className="sign-in__fields">
+                <div className="sign-in__field">
+                  <input
+                    className="sign-in__input"
+                    type="email"
+                    placeholder="Email address"
+                    name="user-email"
+                    id="user-email"
+                    onChange={this.handleChange}
+                  />
+                  <label
+                    className="sign-in__label visually-hidden"
+                    htmlFor="user-email"
+                  >
+                    Email address
+                  </label>
+                </div>
+                <div className="sign-in__field">
+                  <input
+                    className="sign-in__input"
+                    type="password"
+                    placeholder="Password"
+                    name="user-password"
+                    id="user-password"
+                    onChange={this.handleChange}
+                  />
+                  <label
+                    className="sign-in__label visually-hidden"
+                    htmlFor="user-password"
+                  >
+                    Password
+                  </label>
+                </div>
               </div>
-              <div className="sign-in__field">
-                <input
-                  className="sign-in__input"
-                  type="password"
-                  placeholder="Password"
-                  name="user-password"
-                  id="user-password"
-                  onChange={this.handleChange}
-                />
-                <label
-                  className="sign-in__label visually-hidden"
-                  htmlFor="user-password"
-                >
-                  Password
-                </label>
+              <div className="sign-in__submit">
+                <button className="sign-in__btn" type="submit">
+                  Sign in
+                </button>
               </div>
-            </div>
-            <div className="sign-in__submit">
-              <button className="sign-in__btn" type="submit">
-                Sign in
-              </button>
-            </div>
-          </form>
+            </form>
+          )}
         </div>
 
-        <Footer/>
+        <Footer />
       </div>
     );
   }
 }
-
-export default Singin;
+const mapDispatchToProps = (dispatch) => ({
+  singIn: (user) => {
+    dispatch(ActionCreator.singIn(user));
+  },
+});
+const mapStateToProps = (state) => ({
+  user: getUser(state),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Singin);
