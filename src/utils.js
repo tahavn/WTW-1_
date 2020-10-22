@@ -7,6 +7,7 @@ export const getRandomElement = (array) => {
 };
 
 export const extend = (a, b) => {
+  console.log(a)
   return Object.assign({}, a, b);
 };
 

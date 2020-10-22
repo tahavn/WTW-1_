@@ -19,6 +19,7 @@ class SmallMovieCard extends PureComponent {
       onIsPlayingChange,
       onSelectedFilm,
       history,
+      children
     } = this.props;
     return (
       <article
@@ -39,12 +40,8 @@ class SmallMovieCard extends PureComponent {
       >
         <div className="small-movie-card__image">
           {/* <img src={film.src} alt={`${film.title}`} width="280" height="175" /> */}
-          <VideoPlayer
-            poster={film.src}
-            muted
-            isPlaying={isPlaying}
-            src={film.srcMovie}
-          />
+         {this.props.children}
+         
         </div>
         <h3 className="small-movie-card__title">
           <a

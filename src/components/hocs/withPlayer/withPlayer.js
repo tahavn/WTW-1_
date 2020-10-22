@@ -1,37 +1,35 @@
 import React, {PureComponent} from 'react';
 import {films} from '../../../../mocks/films';
+import {connect} from 'redux';
 const withPlayerControl = (Component) => {
   class WithPlayerControl extends PureComponent {
     constructor(props) {
       super(props);
 
       this.state = {
-        currentTime: 0,
-        duration: 0,
-        isPlaying: true,
+        isPlaying: false,
       };
 
       this.videoRef = React.createRef();
 
       this._handleIsPlayingChange = this._handleIsPlayingChange.bind(this);
-      this._handleSetFullScreen = this._handleSetFullScreen.bind(this);
-      this._leftTime = this._leftTime.bind(this);
     }
 
     componentDidMount() {
       const {selectedID} = this.props;
-      let selectedFilm = films.find((item) => item.id === selectedID);
       const video = this.videoRef.current;
-      video.src = selectedFilm.srcMovie;
-      video.play();
-      video.onloadedmetadata = () =>
-        this.setState({
-          duration: video.duration,
-        });
-      video.ontimeupdate = () =>
-        this.setState({
-          currentTime: Math.trunc(video.currentTime),
-        });
+      if(selectedID){
+        let selectedFilm = films.find((item) => item.id === selectedID);
+      }
+      if (this.state.isPlaying) {
+        video.src = this.props.film.srcMovie;
+        video.play();
+      } else {
+        video.src = ``;
+        video.pause();
+      }
+    
+      
     }
 
     componentDidUpdate() {
@@ -48,7 +46,6 @@ const withPlayerControl = (Component) => {
 
     componentWillUnmount() {
       const video = this.videoRef.current;
-
       video.src = ``;
       video.onplay = null;
       video.onloadedmetadata = null;
@@ -62,37 +59,19 @@ const withPlayerControl = (Component) => {
         isPlaying: !isPlaying,
       });
     }
-    _handleSetFullScreen() {
-      const video = this.videoRef.current;
-      video.requestFullscreen();
-      video.controls = true;
-    }
-    _leftTime() {
-      const {currentTime, duration} = this.state;
-      const timeDiff = duration - currentTime;
-      const second = Math.trunc(timeDiff % 60);
-      const minutes = Math.trunc(timeDiff / 60);
-      const hours = Math.trunc(minutes / 60);
-      return `${hours
-        .toString()
-        .padStart(2, `0`)}:${minutes
-        .toString()
-        .padStart(2, `0`)}:${second.toString().padStart(2, `0`)}`;
-    }
+   
+
     // const playerToggler = (currentTime * 100) / duration + `%`;
 
     render() {
       return (
         <Component
           {...this.props}
-          onSetFullScreen={this._handleSetFullScreen}
+          video={this.videoRef}
           onIsPlayingChange={this._handleIsPlayingChange}
-          leftTime={this._leftTime}
-          currentTime={this.state.currentTime}
           isPlaying={this.state.isPlaying}
-          duration={this.state.duration}
         >
-          <video className="player__video" ref={this.videoRef}>
+          <video poster={this.props.film.src} className="player__video" ref={this.videoRef}>
             your browser doesn`t support embedded videos
           </video>
         </Component>

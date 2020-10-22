@@ -1,8 +1,4 @@
-
-
-
 import {extend} from '../../utils';
-
 
 const ActionType = {
   SELECTED_FILMS: `SELECTED_FILMS`,
@@ -23,14 +19,14 @@ const ActionCreator = {
 const initialState = {
   user: false,
   isLogin: false,
-  selectedFilm: []
+  selectedFilms: [],
 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case ActionType.SELECTED_FILMS:
       return extend(state, {
-        selectedFilm: state.selectedFilm.push(action.payload),
+        selectedFilms: [...state.selectedFilms, action.payload],
       });
     case ActionType.USER_LOG_IN:
       return extend(state, {

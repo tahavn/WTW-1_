@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 const Player = (props) => {
   // const playerToggler = (currentTime * 100) / duration + `%`;
 
@@ -12,6 +13,7 @@ const Player = (props) => {
     leftTime,
     onSetFullScreen,
   } = props;
+  console.log(isPlaying)
   const btnIsPlaying = isPlaying ? (
     <React.Fragment>
       <svg viewBox="0 0 14 21" width="14" height="21">

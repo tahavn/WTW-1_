@@ -3,6 +3,7 @@ import NameSpace from '../name-space';
 const getUser = (state) => {
   return state[NameSpace.USER].user;
 };
+
 const getSelectedFilms = (state) => {
   return state[NameSpace.USER].selectedFilms;
 };
@@ -10,11 +11,7 @@ const getSelectedFilms = (state) => {
 const hasSelectedFilms = (state) => {
   const selectedFilms = state[NameSpace.USER].selectedFilms;
   const select = state[NameSpace.SHOW].selectedFilm;
-  console.log(state[`SHOW`].selectedFilm);
-  console.log(selectedFilms);
-  if (select && selectedFilms) {
-    return selectedFilms.some((film) => film.id === select.id);
-  }
-  return false;
+  return selectedFilms.some((film) => film.id === select.id);
 };
+
 export {getUser, getSelectedFilms, hasSelectedFilms};

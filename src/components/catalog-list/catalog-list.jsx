@@ -2,9 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card';
-import withSmallPlayer from '../hocs/with-small-player/with-small-player';
+import {getFilms} from '../../store/data/selector'
+import withPlayer from '../hocs/withPlayer/withPlayer';
 import {ActionCreator} from '../../store/show-films/show-films';
-const SmallMovieCardWrapped = withSmallPlayer(SmallMovieCard);
+const SmallMovieCardWrapped = withPlayer(SmallMovieCard);
 
 const CatalogList = (props) => {
   const {films, history, onSelectedFilm} = props;
@@ -18,6 +19,8 @@ const CatalogList = (props) => {
               history={history}
               key={film.title}
               film={film}
+              poster={film.src}
+              src={film.srcMovie}
               onSelectedFilm={onSelectedFilm}
             />
           );
@@ -32,5 +35,7 @@ CatalogList.propTypes = {
   handlerFilmMouseMove: PropTypes.func,
   handleSelectedFilms: PropTypes.func,
 };
-
-export default CatalogList;
+const mapStateToProps = (state) => ({
+  films: getFilms(state)
+})
+export default connect(mapStateToProps)(CatalogList);

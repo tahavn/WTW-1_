@@ -4,6 +4,8 @@ const getIsLoading = (state) => {
   return state[NameSpace.DATA].isLoading;
 };
 
+const getFilms = (state) => {
+  return state[NameSpace.DATA].films;
+};
 
-
-export {getIsLoading};
+export {getIsLoading, getFilms};
