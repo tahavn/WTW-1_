@@ -51,7 +51,7 @@ class MovieTabBar extends PureComponent {
 
   render() {
     const {activeTab} = this.state;
-    const {children} = this.props;
+    const {children,film} = this.props;
 
     return (
       <div className="movie-card__desc">
@@ -59,7 +59,7 @@ class MovieTabBar extends PureComponent {
           <ul className="movie-nav__list">{this.renderTabs()}</ul>
         </nav>
         {React.Children.map(children, (child) =>
-          React.cloneElement(child, {activeTab})
+          React.cloneElement(child, {activeTab,film})
         )}
       </div>
     );

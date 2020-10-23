@@ -1,5 +1,4 @@
 import React, {PureComponent} from 'react';
-import {films} from '../../../../mocks/films';
 
 const withSmallPlayer = (Component) => {
   class WithSmallPlayer extends PureComponent {

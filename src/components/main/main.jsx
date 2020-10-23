@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Content from '../content/content';
 import {getRandomElement} from '../../utils';
+
 const Main = (props) => {
   const {
     history,

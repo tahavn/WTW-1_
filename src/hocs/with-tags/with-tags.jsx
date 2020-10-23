@@ -1,15 +1,13 @@
 import React, {PureComponent} from 'react';
-import {films} from '../../../../mocks/films';
-import {tags} from '../../../../mocks/tags';
-import {getRandomElement} from '../../../utils';
+import {getRandomElement} from '../../utils';
 import {connect} from 'react-redux';
-import {getIsLoading} from '../../../store/data/selector';
+import {getIsLoading,getTags} from '../../store/data/selector';
 
 import {
   getFilmsByGenre,
   getActiveTag,
-} from '../../../store/show-films/selector';
-import {ActionCreator} from '../../../store/show-films/show-films';
+} from '../../store/show-films/selector';
+import {ActionCreator} from '../../store/show-films/show-films';
 const withTags = (Component) => {
   class WithTags extends PureComponent {
     constructor(props) {
@@ -27,10 +25,10 @@ const withTags = (Component) => {
       return (
         <Component
           {...this.props}
-          randomFilm={getRandomElement(films)}
+          randomFilm={getRandomElement(this.props.films)}
           handlerSorted={this.props.handlerSorted}
           handleSelectedFilms={this.props.handleSelectedFilms}
-          tags={tags}
+          tags={this.props.tags}
           activeTag={this.props.tag}
           films={this.props.films}
           isLoading={this.props.isLoading}
@@ -41,6 +39,7 @@ const withTags = (Component) => {
   const mapStateToProps = (state) => ({
     films: getFilmsByGenre(state),
     tag: getActiveTag(state),
+    tags: getTags(state),
     isLoading: getIsLoading(state),
   });
   const mapDispatchToProps = (dispatch) => ({

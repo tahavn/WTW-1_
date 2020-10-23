@@ -10,7 +10,7 @@ const store = createStore(reducer, composeWithDevTools());
 
 setTimeout(() => {
   store.dispatch(ActionCreator.loadFilms());
-}, 3000);
+}, 1000);
 
 ReactDom.render(
   <Provider store={store}>

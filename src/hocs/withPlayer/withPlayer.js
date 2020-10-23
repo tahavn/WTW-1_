@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {films} from '../../../../mocks/films';
+import {films} from '../../../mocks/films';
 const withPlayerControl = (Component) => {
   class WithPlayerControl extends PureComponent {
     constructor(props) {

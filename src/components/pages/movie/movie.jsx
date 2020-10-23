@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {getUser} from '../../../store/user/selector';
 import {
-  getUser,
   getSelectedFilms,
   hasSelectedFilms,
-} from '../../../store/user/selector';
-import {ActionCreator} from '../../../store/user/reducer';
+} from '../../../store/show-films/selector';
+import {ActionCreator} from '../../../store/show-films/show-films';
 
 import Header from '../../header/header';
 import MovieTabBar from './movie-tab-bar-nav';
@@ -24,6 +24,16 @@ const MoviePage = (props) => {
   const filmByGenre = films.filter((filmers) => {
     return filmers.genre === film.genre && filmers.id !== selectedID;
   });
+
+  const toggleFilm = (film) => {
+    if (isSelect) {
+      props.removeFilm(film);
+      return;
+    } else {
+      props.addFilm(film);
+      return;
+    }
+  };
   return (
     <>
       <section className="movie-card movie-card--full">
@@ -57,7 +67,7 @@ const MoviePage = (props) => {
                 <button
                   className="btn btn--list movie-card__button"
                   type="button"
-                  onClick={()=>props.addFilm(film)}
+                  onClick={() => toggleFilm(film)}
                 >
                   {isSelect && (
                     <svg viewBox="0 0 18 14" width="18" height="14">
@@ -66,10 +76,9 @@ const MoviePage = (props) => {
                   )}
                   {!isSelect && (
                     <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
+                      <use xlinkHref="#add"></use>
+                    </svg>
                   )}
-                 
 
                   <span>My list</span>
                 </button>
@@ -94,10 +103,10 @@ const MoviePage = (props) => {
               <img src={film.src} alt={film.title} width="218" height="327" />
             </div>
 
-            <MovieTabBar>
-              <MovieOverview film={film} label="Overview" />
-              <MovieDetails film={film} label="Details" />
-              <MovieReview film={film} label="Review" />
+            <MovieTabBar film={film}>
+              <MovieOverview label="Overview" />
+              <MovieDetails label="Details" />
+              <MovieReview label="Review" />
             </MovieTabBar>
           </div>
         </div>
@@ -129,6 +138,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispaptch) => ({
   addFilm: (film) => {
     dispaptch(ActionCreator.selectedFilm(film));
+  },
+  removeFilm: (film) => {
+    dispaptch(ActionCreator.deleteFilm(film));
   },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);

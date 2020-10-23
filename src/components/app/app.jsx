@@ -11,8 +11,8 @@ import {films} from '../../../mocks/films';
 
 import MylistPage from '../pages/mylist-page/mylist-page';
 import PlayerMyTest from '../player/player-test';
-import withPlayer from '../hocs/withPlayer/withPlayer';
-import withTags from '../hocs/with-tags/with-tags';
+import withPlayer from '../../hocs/withPlayer/withPlayer';
+import withTags from '../../hocs/with-tags/with-tags';
 
 const VideoWrappedPlayer = withPlayer(Player);
 const MainWithTags = withTags(Main);
