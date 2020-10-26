@@ -4,7 +4,9 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Content from '../content/content';
 import {getRandomElement} from '../../utils';
+import withCountFilms from '../../hocs/with-count-films/with-count-films';
 
+const ContentWithCount = withCountFilms(Content);
 const Main = (props) => {
   const {
     history,
@@ -13,7 +15,7 @@ const Main = (props) => {
     tags,
     activeTag,
     films,
-    isLoading
+    isLoading,
   } = props;
   const {src, id, title, genre, year} = getRandomElement(films);
   // const years = year.getFullYear();
@@ -86,7 +88,7 @@ const Main = (props) => {
           </div>
         </div>
       </section>
-      <Content
+      <ContentWithCount
         history={history}
         onSelectedFilm={handleSelectedFilms}
         handlerSorted={handlerSorted}

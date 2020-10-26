@@ -70,7 +70,7 @@ Array [
           <img
             alt="The Grand Budapest Hotel poster"
             height="327"
-            src="/img/moonrise-kingdom.jpg"
+            src="/img/war-of-the-worlds.jpg"
             width="218"
           />
         </div>
@@ -80,7 +80,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Moonrise Kingdom
+            War of the Worlds
           </h2>
           <p
             className="movie-card__meta"
@@ -88,12 +88,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Thrillers
+              Kids & Family
             </span>
             <span
               className="movie-card__year"
             >
-              2005
+              2012
             </span>
           </p>
           <div
@@ -101,7 +101,7 @@ Array [
           >
             <a
               className="btn btn--play movie-card__button"
-              href="/player/9"
+              href="/player/12"
               onClick={[Function]}
               type="button"
             >
@@ -192,6 +192,7 @@ Array [
       >
         <button
           className="catalog__button"
+          onClick={[Function]}
           type="button"
         >
           Show more

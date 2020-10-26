@@ -2,12 +2,16 @@ import React from 'react';
 import TagItem from '../tag-item/tag-item';
 import PropTypes from 'prop-types';
 const TagList = (props) => {
-  const {items, handlerSorted, activeTag} = props;
+  const {items, handlerSorted, resetMovies, activeTag} = props;
+  const handlerClick = (item) => {
+    resetMovies();
+    handlerSorted(item);
+  };
   return (
     <ul className="catalog__genres-list">
       <TagItem
         activeTag={activeTag}
-        handlerSorted={handlerSorted}
+        handlerSorted={()=>handlerClick(`All genres`)}
         title={`All genres`}
       />
       {items &&
@@ -15,7 +19,7 @@ const TagList = (props) => {
           return (
             <TagItem
               activeTag={activeTag}
-              handlerSorted={handlerSorted}
+              handlerSorted={()=>handlerClick(item)}
               key={item}
               title={item}
             />
@@ -28,6 +32,7 @@ const TagList = (props) => {
 TagList.propTypes = {
   items: PropTypes.array,
   handlerSorted: PropTypes.func,
+  resetMovies: PropTypes.func,
   activeTag: PropTypes.string,
 };
 export default TagList;

@@ -5,23 +5,7 @@ import PropTypes from 'prop-types';
 import Footer from '../footer/footer';
 import Loading from '../loading/loading';
 
-const TagsAndList = ({
-  activeTag,
-  handlerSorted,
-  tags,
-  history,
-  films,
-  onSelectedFilm,
-}) => (
-  <React.Fragment>
-    <TagList activeTag={activeTag} handlerSorted={handlerSorted} items={tags} />
-    <CatalogList
-      history={history}
-      films={films}
-      onSelectedFilm={onSelectedFilm}
-    />
-  </React.Fragment>
-);
+import CotalogMore from '../catalog-more/catalog-more';
 
 const Content = (props) => {
   const {
@@ -32,7 +16,11 @@ const Content = (props) => {
     handlerSorted,
     history,
     isLoading,
+    numberOfmovie,
+    addMovies,
+    resetMovies,
   } = props;
+  const showFilms = films.slice(0, numberOfmovie);
   return (
     <div className="page-content">
       <section className="catalog">
@@ -40,20 +28,17 @@ const Content = (props) => {
         {isLoading ? (
           <TagsAndList
             history={history}
-            films={films}
+            films={showFilms}
             onSelectedFilm={onSelectedFilm}
             activeTag={activeTag}
             handlerSorted={handlerSorted}
             tags={tags}
+            resetMovies={resetMovies}
           />
         ) : (
           <Loading />
         )}
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">
-            Show more
-          </button>
-        </div>
+        {numberOfmovie < films.length && <CotalogMore addMovies={addMovies} />}
       </section>
 
       <Footer />
@@ -61,14 +46,52 @@ const Content = (props) => {
   );
 };
 
+const TagsAndList = ({
+  activeTag,
+  handlerSorted,
+  tags,
+  history,
+  films,
+  onSelectedFilm,
+  resetMovies,
+}) => (
+  <React.Fragment>
+    <TagList
+      resetMovies={resetMovies}
+      activeTag={activeTag}
+      handlerSorted={handlerSorted}
+      items={tags}
+    />
+    <CatalogList
+      history={history}
+      films={films}
+      onSelectedFilm={onSelectedFilm}
+    />
+  </React.Fragment>
+);
+
+TagsAndList.propTypes = {
+  films: PropTypes.array,
+  tags: PropTypes.array,
+  history: PropTypes.object,
+  handlerSorted: PropTypes.func,
+  onSelectedFilm: PropTypes.func,
+  resetMovies: PropTypes.func,
+  activeTag: PropTypes.string,
+};
 Content.propTypes = {
   films: PropTypes.array,
   tags: PropTypes.array,
   isLoading: PropTypes.bool,
+  history: PropTypes.object,
   handlerSorted: PropTypes.func,
   handlerFilmMouseMove: PropTypes.func,
   handleSelectedFilms: PropTypes.func,
+  resetMovies: PropTypes.func,
+  addMovies: PropTypes.func,
+  onSelectedFilm: PropTypes.func,
   activeTag: PropTypes.string,
+  numberOfmovie: PropTypes.number,
 };
 
 export default Content;
