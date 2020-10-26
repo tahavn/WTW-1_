@@ -1,4 +1,3 @@
-import NameSpace from '../name-space';
 import {extend} from '../../utils';
 import {films as allfilms} from '../../../mocks/films';
 
