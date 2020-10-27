@@ -14,12 +14,12 @@ import MovieDetails from './movie-details';
 import MovieReview from './movie-review';
 import MovieOverview from './movie-overview';
 import Footer from '../../footer/footer';
+import MyListButton from '../../my-list-button/my-list-button';
 // import SmallMovieCard from '../../small-movie-card/small-movie-card';
 import CatalogList from '../../catalog-list/catalog-list';
 
 const MoviePage = (props) => {
   const {films, history, selectedID, isSelect} = props;
-  console.log(`isSelect`);
   const film = films[selectedID];
   const filmByGenre = films.filter((filmers) => {
     return filmers.genre === film.genre && filmers.id !== selectedID;
@@ -64,7 +64,8 @@ const MoviePage = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button
+                <MyListButton film={film}/>
+                {/* <button
                   className="btn btn--list movie-card__button"
                   type="button"
                   onClick={() => toggleFilm(film)}
@@ -81,7 +82,7 @@ const MoviePage = (props) => {
                   )}
 
                   <span>My list</span>
-                </button>
+                </button> */}
                 <a
                   onClick={(event) => {
                     event.preventDefault();

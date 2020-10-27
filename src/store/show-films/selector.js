@@ -23,6 +23,14 @@ const hasSelectedFilms = (state) => {
   const select = state[NameSpace.SHOW].selectedFilm;
   return favoriteFilms.some((film) => film.id === select.id);
 };
+const getFavoriteFilms = (state) => {
+  return state[NameSpace.SHOW].favoriteFilms;
+};
 
-
-export {getFilmsByGenre, getActiveTag, getSelectedFilms, hasSelectedFilms};
+export {
+  getFilmsByGenre,
+  getActiveTag,
+  getSelectedFilms,
+  hasSelectedFilms,
+  getFavoriteFilms,
+};
