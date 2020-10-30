@@ -1,4 +1,3 @@
-import {films} from '../../../mocks/films';
 import NameSpace from '../name-space';
 
 const getIsLoading = (state) => {
@@ -15,4 +14,10 @@ const getTags = (state) => {
   });
   return [...new Set(tags)]
 };
-export {getIsLoading, getFilms, getTags};
+
+const getSelectFilm = (state,id) => {
+  console.log(state);
+  return state.find(it=>it.id === id);
+
+}
+export {getIsLoading, getFilms, getTags,getSelectFilm};

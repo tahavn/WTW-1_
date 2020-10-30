@@ -7,7 +7,6 @@ import MoviePage from '../pages/movie/movie';
 import Player from '../player/player';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 
-import {films} from '../../../mocks/films';
 
 import MylistPage from '../pages/mylist-page/mylist-page';
 import PlayerMyTest from '../player/player-test';
@@ -54,7 +53,6 @@ const App = () => {
               <MoviePage
                 selectedID={selectedID}
                 history={routerProps.history}
-                films={films}
               />
             );
           }}

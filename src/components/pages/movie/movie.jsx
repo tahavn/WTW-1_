@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+
 import {getUser} from '../../../store/user/selector';
+import {getSelectFilm, getFilms} from '../../../store/data/selector';
 import {
   getSelectedFilms,
   hasSelectedFilms,
 } from '../../../store/show-films/selector';
 import {ActionCreator} from '../../../store/show-films/show-films';
 
+import Loading from '../../loading/loading';
 import Header from '../../header/header';
 import MovieTabBar from './movie-tab-bar-nav';
 import MovieDetails from './movie-details';
@@ -20,26 +23,35 @@ import CatalogList from '../../catalog-list/catalog-list';
 
 const MoviePage = (props) => {
   const {films, history, selectedID, isSelect} = props;
-  const film = films[selectedID];
+  const film = getSelectFilm(films, selectedID);
+  console.log(film);
+  if (!films.length) {
+    return (
+      <div style={{background: 'black',height: '100%'}}>
+        <Loading />
+      </div>
+    );
+  }
   const filmByGenre = films.filter((filmers) => {
     return filmers.genre === film.genre && filmers.id !== selectedID;
   });
 
-  const toggleFilm = (film) => {
-    if (isSelect) {
-      props.removeFilm(film);
-      return;
-    } else {
-      props.addFilm(film);
-      return;
-    }
-  };
+  // const toggleFilm = (film) => {
+  //   if (isSelect) {
+  //     props.removeFilm(film);
+  //     return;
+  //   } else {
+  //     props.addFilm(film);
+  //     return;
+  //   }
+  // };
+
   return (
     <>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={film.src} alt="The Grand Budapest Hotel" />
+            <img src={film.background_image} alt="The Grand Budapest Hotel" />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -64,25 +76,8 @@ const MoviePage = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <MyListButton film={film}/>
-                {/* <button
-                  className="btn btn--list movie-card__button"
-                  type="button"
-                  onClick={() => toggleFilm(film)}
-                >
-                  {isSelect && (
-                    <svg viewBox="0 0 18 14" width="18" height="14">
-                      <use xlinkHref="#in-list"></use>
-                    </svg>
-                  )}
-                  {!isSelect && (
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
-                  )}
+                <MyListButton film={film} />
 
-                  <span>My list</span>
-                </button> */}
                 <a
                   onClick={(event) => {
                     event.preventDefault();
@@ -135,6 +130,7 @@ const mapStateToProps = (state) => ({
   user: getUser(state),
   selectedFilms: getSelectedFilms(state),
   isSelect: hasSelectedFilms(state),
+  films: getFilms(state),
 });
 const mapDispatchToProps = (dispaptch) => ({
   addFilm: (film) => {

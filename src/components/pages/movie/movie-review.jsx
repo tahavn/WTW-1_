@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 const MovieReview = (props) => {
   const {label, activeTab, film} = props;
   const cheched = label === activeTab;
-  const halfReview = Math.floor(film.reviews.length / 2);
-  const filmOnePart = film.reviews.slice(0, halfReview);
-  const filmTwoPart = film.reviews.slice(halfReview);
+  // const halfReview = Math.floor(film.reviews.length / 2);
+  // const filmOnePart = film.reviews.slice(0, halfReview);
+  // const filmTwoPart = film.reviews.slice(halfReview);
   return (
     <React.Fragment>
       {cheched && (
         <div className="movie-card__reviews movie-card__row">
           <div className="movie-card__reviews-col">
-            {filmOnePart.map((review) => {
+            {[].map((review) => {
               return (
                 <div className="review" key={review.author}>
                   <blockquote className="review__quote">
@@ -30,7 +30,7 @@ const MovieReview = (props) => {
             })}
           </div>
           <div className="movie-card__reviews-col">
-            {filmTwoPart.map((review) => {
+            {[].map((review) => {
               return (
                 <div className="review" key={review.author}>
                   <blockquote className="review__quote">
