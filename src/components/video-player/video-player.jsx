@@ -9,13 +9,13 @@ class VideoPlayer extends PureComponent {
   componentDidMount() {
     const {muted,src,isPlaying} = this.props;
     const video = this.videoRef.current;
-    video.muted = muted;
+    video.muted = muted || false;
     if (isPlaying) {
       video.src = src;
       video.play();
     } else {
       video.src = ``;
-      video.pause();
+      // video.pause();
     }
   }
 

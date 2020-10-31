@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card';
 import withSmallPlayer from '../../hocs/with-small-player/with-small-player';
 import {ActionCreator} from '../../store/show-films/show-films';
+
 const SmallMovieCardWrapped = withSmallPlayer(SmallMovieCard);
 
 const CatalogList = (props) => {
