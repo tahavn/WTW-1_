@@ -7,17 +7,19 @@ import MoviePage from '../pages/movie/movie';
 import Player from '../player/player';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 
-
 import MylistPage from '../pages/mylist-page/mylist-page';
 import PlayerMyTest from '../player/player-test';
 import withPlayer from '../../hocs/withPlayer/withPlayer';
 import withTags from '../../hocs/with-tags/with-tags';
+import Loading from '../loading/loading';
+import {getIsLoading} from '../../store/data/selector';
+import {connect} from 'react-redux';
 
 const VideoWrappedPlayer = withPlayer(Player);
 const MainWithTags = withTags(Main);
 
-
-const App = () => {
+const App = (props) => {
+  const {isLoading} = props;
   return (
     <BrowserRouter>
       <Switch>
@@ -25,11 +27,7 @@ const App = () => {
           exact
           path="/"
           render={(routerProps) => {
-            return (
-              <MainWithTags
-                history={routerProps.history}
-              />
-            );
+            return <MainWithTags history={routerProps.history} />;
           }}
         />
         {/* <Route exact path="/">
@@ -49,11 +47,12 @@ const App = () => {
           exact
           render={(routerProps) => {
             const selectedID = +routerProps.match.params.id;
-            return (
-              <MoviePage
-                selectedID={selectedID}
-                history={routerProps.history}
-              />
+            return !isLoading ? (
+              <div style={{background: 'black', height: '100vh'}}>
+                <Loading />
+              </div>
+            ) : (
+              <MoviePage selectedID={selectedID} history={routerProps.history} />
             );
           }}
         />
@@ -62,14 +61,14 @@ const App = () => {
         </Route>
         <Route
           path="/player/:id"
-          render={(props) => {
-            const selectedID = +props.match.params.id;
-            return (
-              <VideoWrappedPlayer
-                selectedID={selectedID}
-                {...props}
-                selectedFilm={films}
-              />
+          render={(routerProps) => {
+            const selectedID = +routerProps.match.params.id;
+            return !isLoading ? (
+              <div style={{background: 'black', height: '100vh'}}>
+                <Loading />
+              </div>
+            ) : (
+              <VideoWrappedPlayer history={routerProps.history} selectedID={selectedID} {...props} />
             );
           }}
         />
@@ -92,4 +91,7 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  isLoading: getIsLoading(state),
+});
+export default connect(mapStateToProps)(App);

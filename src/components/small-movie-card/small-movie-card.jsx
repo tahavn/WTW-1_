@@ -1,6 +1,8 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import VideoPlayer from '../video-player/video-player';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../store/show-films/show-films';
 
 class SmallMovieCard extends PureComponent {
   constructor(props) {
@@ -13,13 +15,7 @@ class SmallMovieCard extends PureComponent {
   }
 
   render() {
-    const {
-      film,
-      isPlaying,
-      onIsPlayingChange,
-      onSelectedFilm,
-      history,
-    } = this.props;
+    const {film, isPlaying, onIsPlayingChange, handleSelectedFilms, history} = this.props;
     return (
       <article
         onMouseEnter={() => {
@@ -32,19 +28,14 @@ class SmallMovieCard extends PureComponent {
           onIsPlayingChange(false);
         }}
         onClick={() => {
-          onSelectedFilm(film);
+          handleSelectedFilms(film);
           history.push(`/films/${film.id}`);
         }}
         className="small-movie-card catalog__movies-card"
       >
         <div className="small-movie-card__image">
           {/* <img src={film.src} alt={`${film.title}`} width="280" height="175" /> */}
-          <VideoPlayer
-            poster={film.src}
-            muted
-            isPlaying={isPlaying}
-            src={film.srcMovie}
-          />
+          <VideoPlayer poster={film.src} muted isPlaying={isPlaying} src={film.srcMovie} />
         </div>
         <h3 className="small-movie-card__title">
           <a
@@ -76,4 +67,10 @@ SmallMovieCard.propTypes = {
   handlerFilmMouseMove: PropTypes.func,
 };
 
-export default SmallMovieCard;
+const mapDispatchToProps = (dispatch) => ({
+  handleSelectedFilms(film) {
+    dispatch(ActionCreator.chooseFilm(film));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(SmallMovieCard);

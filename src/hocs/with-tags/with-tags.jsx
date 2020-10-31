@@ -1,16 +1,14 @@
 import React, {PureComponent} from 'react';
 import {getRandomElement} from '../../utils';
 import {connect} from 'react-redux';
-import {getIsLoading,getTags} from '../../store/data/selector';
+import {getFilms, getIsLoading, getTags} from '../../store/data/selector';
 
-import {
-  getFilmsByGenre,
-  getActiveTag,
-} from '../../store/show-films/selector';
+import {getFilmsByGenre, getActiveTag} from '../../store/show-films/selector';
+
 import {ActionCreator} from '../../store/show-films/show-films';
 const withTags = (Component) => {
   class WithTags extends PureComponent {
-    constructor(props) {
+    constructor(_props) {
       super();
       this.state = {
         sortedFilms: null,
@@ -31,17 +29,20 @@ const withTags = (Component) => {
           tags={this.props.tags}
           activeTag={this.props.tag}
           films={this.props.films}
+          mainFilm={this.props.mainFilm}
           isLoading={this.props.isLoading}
         />
       );
     }
   }
-  const mapStateToProps = (state) => ({
+  const mapStateToProps = (state, props) => ({
+    mainFilm: getFilms(state,props)[0],
     films: getFilmsByGenre(state),
     tag: getActiveTag(state),
     tags: getTags(state),
     isLoading: getIsLoading(state),
   });
+
   const mapDispatchToProps = (dispatch) => ({
     handlerSorted(activeTag) {
       dispatch(ActionCreator.chooseGenre(activeTag));

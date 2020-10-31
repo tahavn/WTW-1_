@@ -1,25 +1,27 @@
 import React from 'react';
-import Header from '../header/header';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+import Loading from '../loading/loading';
+import Header from '../header/header';
 import Content from '../content/content';
-import {getRandomElement} from '../../utils';
 import withCountFilms from '../../hocs/with-count-films/with-count-films';
 
 const ContentWithCount = withCountFilms(Content);
-const Main = (props) => {
-  const {
-    history,
-    handlerSorted,
-    handleSelectedFilms,
-    tags,
-    activeTag,
-    films,
-    isLoading,
-  } = props;
-  const {src, id, title, genre, year} = getRandomElement(films);
-  // const years = year.getFullYear();
 
+const Main = (props) => {
+  const {history, handlerSorted, handleSelectedFilms, tags, activeTag, films, isLoading, mainFilm} = props;
+
+  if (!isLoading) {
+    return (
+      <div style={{background: 'black', height: '100vh'}}>
+        <Loading />
+      </div>
+    );
+  }
+  const {src, id, title, genre, year, background_image} = mainFilm;
+  // const years = year.getFullYear();
+  console.log(mainFilm);
   const isInMyLyst = !id ? (
     <React.Fragment>
       <svg viewBox="0 0 18 14" width="18" height="14">
@@ -37,10 +39,7 @@ const Main = (props) => {
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img
-            src="/img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
-          />
+          <img src={`${background_image}`} alt={`${title}`} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -50,12 +49,7 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img
-                src={src}
-                alt="The Grand Budapest Hotel poster"
-                width="218"
-                height="327"
-              />
+              <img src={src} alt="The Grand Budapest Hotel poster" width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -66,20 +60,13 @@ const Main = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <Link
-                  to={`player/${id}`}
-                  className="btn btn--play movie-card__button"
-                  type="button"
-                >
+                <Link to={`player/${id}`} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button
-                  className="btn btn--list movie-card__button"
-                  type="button"
-                >
+                <button className="btn btn--list movie-card__button" type="button">
                   {isInMyLyst}
                   <span>My list</span>
                 </button>
@@ -90,7 +77,6 @@ const Main = (props) => {
       </section>
       <ContentWithCount
         history={history}
-        onSelectedFilm={handleSelectedFilms}
         handlerSorted={handlerSorted}
         tags={tags}
         activeTag={activeTag}

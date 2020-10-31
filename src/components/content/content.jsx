@@ -11,7 +11,6 @@ const Content = (props) => {
   const {
     films,
     tags,
-    onSelectedFilm,
     activeTag,
     handlerSorted,
     history,
@@ -29,7 +28,6 @@ const Content = (props) => {
           <TagsAndList
             history={history}
             films={showFilms}
-            onSelectedFilm={onSelectedFilm}
             activeTag={activeTag}
             handlerSorted={handlerSorted}
             tags={tags}

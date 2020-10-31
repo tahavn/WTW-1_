@@ -1,6 +1,6 @@
 import {extend} from '../../utils';
 import {films as allfilms} from '../../../mocks/films';
-import {adaptiveFilms} from '../../adapter'
+import {adaptiveFilms} from '../../adapter';
 const ActionType = {
   GET_FILMS: `GET_FILMS`,
   LOAD_FILMS: `LOAD_FILMS`,
@@ -17,19 +17,20 @@ const ActionCreator = {
   }),
   loadFilms: (films) => ({
     type: ActionType.LOAD_FILMS,
-    payload: films
+    payload: films,
   }),
 };
-
 const Operations = {
   loadFilms: () => (dispatch, _getState, api) => {
-    return api.get('/films').then((response) => {
-      dispatch(ActionCreator.loadFilms(response.data.map((film)=>adaptiveFilms(film))));
-      dispatch(ActionCreator.isLoadingFilm(true));
-    }).catch((err)=>{
-      console.log(err)
-      throw err
-    });
+    return api
+      .get(`/films`)
+      .then((response) => {
+        dispatch(ActionCreator.loadFilms(response.data.map((film) => adaptiveFilms(film))));
+        dispatch(ActionCreator.isLoadingFilm(true));
+      })
+      .catch((err) => {
+        throw err;
+      });
   },
 };
 
@@ -38,11 +39,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.GET_FILMS:
       return state;
     case ActionType.LOAD_FILMS:
-      console.log(action.payload);
-      return extend(state, {films: action.payload,isLoading: true});
+      return extend(state, {films: action.payload, isLoading: true});
     default:
       return state;
   }
 };
 
-export {reducer, ActionCreator,Operations};
+export {reducer, ActionCreator, Operations};

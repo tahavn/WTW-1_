@@ -1,5 +1,7 @@
 import React, {PureComponent} from 'react';
-import {films} from '../../../mocks/films';
+import {connect} from 'react-redux';
+import {getFilmById} from '../../store/data/selector';
+
 const withPlayerControl = (Component) => {
   class WithPlayerControl extends PureComponent {
     constructor(props) {
@@ -19,8 +21,7 @@ const withPlayerControl = (Component) => {
     }
 
     componentDidMount() {
-      const {selectedID} = this.props;
-      let selectedFilm = films.find((item) => item.id === selectedID);
+      const {selectedFilm} = this.props;
       const video = this.videoRef.current;
       video.src = selectedFilm.srcMovie;
       video.play();
@@ -48,7 +49,6 @@ const withPlayerControl = (Component) => {
 
     componentWillUnmount() {
       const video = this.videoRef.current;
-
       video.src = ``;
       video.onplay = null;
       video.onloadedmetadata = null;
@@ -73,11 +73,9 @@ const withPlayerControl = (Component) => {
       const second = Math.trunc(timeDiff % 60);
       const minutes = Math.trunc(timeDiff / 60);
       const hours = Math.trunc(minutes / 60);
-      return `${hours
+      return `${hours.toString().padStart(2, `0`)}:${minutes.toString().padStart(2, `0`)}:${second
         .toString()
-        .padStart(2, `0`)}:${minutes
-        .toString()
-        .padStart(2, `0`)}:${second.toString().padStart(2, `0`)}`;
+        .padStart(2, `0`)}`;
     }
     // const playerToggler = (currentTime * 100) / duration + `%`;
 
@@ -88,6 +86,7 @@ const withPlayerControl = (Component) => {
           onSetFullScreen={this._handleSetFullScreen}
           onIsPlayingChange={this._handleIsPlayingChange}
           leftTime={this._leftTime}
+          selectedFilm={this.props.selectedFilm}
           currentTime={this.state.currentTime}
           isPlaying={this.state.isPlaying}
           duration={this.state.duration}
@@ -99,7 +98,11 @@ const withPlayerControl = (Component) => {
       );
     }
   }
-  return WithPlayerControl;
+
+  const mapStateToProps = (state, props) => ({
+    selectedFilm: getFilmById(state, props),
+  });
+  return connect(mapStateToProps)(WithPlayerControl);
 };
 
 export default withPlayerControl;

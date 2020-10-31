@@ -8,7 +8,6 @@ const SmallMovieCardWrapped = withSmallPlayer(SmallMovieCard);
 
 const CatalogList = (props) => {
   const {films, history, onSelectedFilm} = props;
-  console.log(onSelectedFilm)
   return (
     <div className="catalog__movies-list">
       {films &&

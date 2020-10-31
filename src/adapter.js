@@ -1,4 +1,4 @@
-export const adaptiveFilms = (film) =>{
+export const adaptiveFilms = (film) => {
   return {
     ...film,
     title: film.name,
@@ -8,8 +8,8 @@ export const adaptiveFilms = (film) =>{
     year: film.released,
     src: film.background_image,
     src_test: film.poster_image,
-  }
-}
+  };
+};
 /*
 id: 0,
 title: 'Fantastic Beasts: The Crimes of Grindelwald',

@@ -3,14 +3,10 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {getUser} from '../../../store/user/selector';
-import {getSelectFilm, getFilms} from '../../../store/data/selector';
-import {
-  getSelectedFilms,
-  hasSelectedFilms,
-} from '../../../store/show-films/selector';
+import {getSelectFilm, getFilms, getSimilarFilms, getFilmById} from '../../../store/data/selector';
+import {getSelectedFilms, hasSelectedFilms} from '../../../store/show-films/selector';
 import {ActionCreator} from '../../../store/show-films/show-films';
 
-import Loading from '../../loading/loading';
 import Header from '../../header/header';
 import MovieTabBar from './movie-tab-bar-nav';
 import MovieDetails from './movie-details';
@@ -22,19 +18,8 @@ import MyListButton from '../../my-list-button/my-list-button';
 import CatalogList from '../../catalog-list/catalog-list';
 
 const MoviePage = (props) => {
-  const {films, history, selectedID, isSelect} = props;
-  const film = getSelectFilm(films, selectedID);
-  console.log(film);
-  if (!films.length) {
-    return (
-      <div style={{background: 'black',height: '100%'}}>
-        <Loading />
-      </div>
-    );
-  }
-  const filmByGenre = films.filter((filmers) => {
-    return filmers.genre === film.genre && filmers.id !== selectedID;
-  });
+  const {film, history, selectedID, isSelect, similarFilms} = props;
+  // const film = getSelectFilm(films, selectedID);
 
   // const toggleFilm = (film) => {
   //   if (isSelect) {
@@ -96,7 +81,7 @@ const MoviePage = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={film.src} alt={film.title} width="218" height="327" />
+              <img src={film.poster_image} alt={film.title} width="218" height="327" />
             </div>
 
             <MovieTabBar film={film}>
@@ -114,7 +99,7 @@ const MoviePage = (props) => {
           {/* <div className="catalog__movies-list">
             <SmallMovieCard />
           </div> */}
-          <CatalogList history={history} films={filmByGenre} />
+          <CatalogList history={history} films={similarFilms} />
         </section>
 
         <Footer />
@@ -126,11 +111,12 @@ const MoviePage = (props) => {
 MoviePage.propTypes = {
   id: PropTypes.number,
 };
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, props) => ({
   user: getUser(state),
   selectedFilms: getSelectedFilms(state),
   isSelect: hasSelectedFilms(state),
-  films: getFilms(state),
+  film: getFilmById(state, props),
+  similarFilms: getSimilarFilms(state, props.selectedID),
 });
 const mapDispatchToProps = (dispaptch) => ({
   addFilm: (film) => {
