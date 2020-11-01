@@ -1,18 +1,36 @@
 import NameSpace from '../name-space';
+import {createSelector} from 'reselect';
 
 const getActiveTag = (state) => {
   return state[NameSpace.SHOW].currentGenre;
 };
+const getFilms = (state) => state[NameSpace.DATA].films;
+// const getFilmsByGenre = (state) => {
+//   const films = state[NameSpace.DATA].films;
+//   const tag = state[NameSpace.SHOW].currentGenre;
+//   if (tag === `All genres`) {
+//     return films;
+//   }
+//   return films.filter((item) => {
+//     return item.genre === tag;
+//   });
+// };
 
 const getFilmsByGenre = (state) => {
-  const films = state[NameSpace.DATA].films;
+  const films = getFilms(state);
   const tag = state[NameSpace.SHOW].currentGenre;
+
   if (tag === `All genres`) {
     return films;
   }
-  return films.filter((item) => {
-    return item.genre === tag;
+
+  const filmsByGenre = createSelector(getFilms, (items) => {
+    return items.filter((item) => {
+      return item.genre === tag;
+    });
   });
+
+  return filmsByGenre(state);
 };
 const getSelectedFilms = (state) => {
   return state[NameSpace.SHOW].favoriteFilms;
@@ -27,10 +45,4 @@ const getFavoriteFilms = (state) => {
   return state[NameSpace.SHOW].favoriteFilms;
 };
 
-export {
-  getFilmsByGenre,
-  getActiveTag,
-  getSelectedFilms,
-  hasSelectedFilms,
-  getFavoriteFilms,
-};
+export {getFilmsByGenre, getActiveTag, getSelectedFilms, hasSelectedFilms, getFavoriteFilms};

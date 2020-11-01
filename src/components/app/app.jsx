@@ -1,11 +1,13 @@
 import React from 'react';
-import Main from '../main/main';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 // import Content from '../content/content';
+import Main from '../main/main';
 import Singin from '../singin/singin';
 import Addreview from '../addreview/addreview';
 import MoviePage from '../pages/movie/movie';
 import Player from '../player/player';
-import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 
 import MylistPage from '../pages/mylist-page/mylist-page';
 import PlayerMyTest from '../player/player-test';
@@ -13,8 +15,6 @@ import withPlayer from '../../hocs/withPlayer/withPlayer';
 import withTags from '../../hocs/with-tags/with-tags';
 import Loading from '../loading/loading';
 import {getIsLoading} from '../../store/data/selector';
-import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/user/reducer';
 
 const VideoWrappedPlayer = withPlayer(Player);
 const MainWithTags = withTags(Main);
@@ -96,5 +96,8 @@ const mapStateToProps = (state) => ({
   isLoading: getIsLoading(state),
 });
 
+App.propTypes = {
+  isLoading: PropTypes.bool,
+};
 
 export default connect(mapStateToProps)(App);
