@@ -8,17 +8,7 @@ import Loading from '../loading/loading';
 import CotalogMore from '../catalog-more/catalog-more';
 
 const Content = (props) => {
-  const {
-    films,
-    tags,
-    activeTag,
-    handlerSorted,
-    history,
-    isLoading,
-    numberOfmovie,
-    addMovies,
-    resetMovies,
-  } = props;
+  const {films, tags, activeTag, handlerSorted, history, isLoading, numberOfmovie, addMovies, resetMovies} = props;
   const showFilms = films.slice(0, numberOfmovie);
   return (
     <div className="page-content">
@@ -54,12 +44,7 @@ const TagsAndList = ({
   resetMovies,
 }) => (
   <React.Fragment>
-    <TagList
-      resetMovies={resetMovies}
-      activeTag={activeTag}
-      handlerSorted={handlerSorted}
-      items={tags}
-    />
+    <TagList resetMovies={resetMovies} activeTag={activeTag} handlerSorted={handlerSorted} items={tags} />
     <CatalogList
       history={history}
       films={films}

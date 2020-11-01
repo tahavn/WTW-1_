@@ -14,6 +14,7 @@ import withTags from '../../hocs/with-tags/with-tags';
 import Loading from '../loading/loading';
 import {getIsLoading} from '../../store/data/selector';
 import {connect} from 'react-redux';
+import {ActionCreator} from '../../store/user/reducer';
 
 const VideoWrappedPlayer = withPlayer(Player);
 const MainWithTags = withTags(Main);
@@ -39,7 +40,7 @@ const App = (props) => {
         <Route
           path="/films/:id/review"
           render={(routerProps) => {
-            return <Addreview {...routerProps} films={films} />;
+            return <Addreview {...routerProps} films={[`need films!`]} />; // todo: need
           }}
         />
         <Route
@@ -48,7 +49,7 @@ const App = (props) => {
           render={(routerProps) => {
             const selectedID = +routerProps.match.params.id;
             return !isLoading ? (
-              <div style={{background: 'black', height: '100vh'}}>
+              <div style={{background: `black`, height: `100vh`}}>
                 <Loading />
               </div>
             ) : (
@@ -94,4 +95,6 @@ const App = (props) => {
 const mapStateToProps = (state) => ({
   isLoading: getIsLoading(state),
 });
+
+
 export default connect(mapStateToProps)(App);

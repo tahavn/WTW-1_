@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Render pageMain 1`] = `
+<div
+  style={
+    Object {
+      "background": "black",
+      "height": "100vh",
+    }
+  }
+>
+  <div
+    className="loader"
+  >
+    <div
+      className="l_main"
+    >
+      <div
+        className="l_square"
+      >
+        <span />
+        <span />
+        <span />
+      </div>
+      <div
+        className="l_square"
+      >
+        <span />
+        <span />
+        <span />
+      </div>
+      <div
+        className="l_square"
+      >
+        <span />
+        <span />
+        <span />
+      </div>
+      <div
+        className="l_square"
+      >
+        <span />
+        <span />
+        <span />
+      </div>
+    </div>
+  </div>
+</div>
+`;

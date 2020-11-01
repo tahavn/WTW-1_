@@ -21,7 +21,6 @@ const Main = (props) => {
   }
   const {src, id, title, genre, year, background_image} = mainFilm;
   // const years = year.getFullYear();
-  console.log(mainFilm);
   const isInMyLyst = !id ? (
     <React.Fragment>
       <svg viewBox="0 0 18 14" width="18" height="14">
@@ -79,6 +78,7 @@ const Main = (props) => {
         history={history}
         handlerSorted={handlerSorted}
         tags={tags}
+        handleSelectedFilms={handleSelectedFilms}
         activeTag={activeTag}
         films={films}
         isLoading={isLoading}

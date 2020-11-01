@@ -1,5 +1,4 @@
 import {extend} from '../../utils';
-import {films as allfilms} from '../../../mocks/films';
 import {adaptiveFilms} from '../../adapter';
 const ActionType = {
   GET_FILMS: `GET_FILMS`,

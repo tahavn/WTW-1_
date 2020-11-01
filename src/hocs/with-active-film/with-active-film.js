@@ -1,18 +1,12 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react';
 
 const withActivefilm = (Component) => {
-
-
   class WithActivefilm extends PureComponent {
-    render(){
-      return(
-<Component>
-  
-</Component>
-      )
+    render() {
+      return <Component></Component>;
     }
   }
   return WithActivefilm;
-}
+};
 
-return withActivefilm;
+export default withActivefilm;

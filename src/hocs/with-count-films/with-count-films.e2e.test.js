@@ -14,12 +14,12 @@ const mockComponent = () => {
   return <div></div>;
 };
 
-describe('HOC withCountFilm', () => {
+describe(`HOC withCountFilm`, () => {
   const numberOfmovie = COUNT_OF_FILMS;
   const handlerCountFilmAdd = jest.fn();
   const handlerCountFilmReset = jest.fn();
 
-  it('should be with component addShowMovies', () => {
+  it(`should be with component addShowMovies`, () => {
     const ComponentWrapped = withCountFilm(mockComponent);
     const wrapped = mount(
       <ComponentWrapped
@@ -29,12 +29,10 @@ describe('HOC withCountFilm', () => {
       />
     );
     wrapped.instance()._handlerCountFilmAdd();
-    expect(wrapped.state().numberOfmovie).toEqual(
-      numberOfmovie + COUNT_OF_FILMS
-    );
+    expect(wrapped.state().numberOfmovie).toEqual(numberOfmovie + COUNT_OF_FILMS);
   });
 
-  it('should be with reset showMovies', () => {
+  it(`should be with reset showMovies`, () => {
     const ComponentWrapped = withCountFilm(mockComponent);
     const wrapped = mount(
       <ComponentWrapped
@@ -45,7 +43,6 @@ describe('HOC withCountFilm', () => {
     );
     wrapped.instance()._handlerCountFilmAdd();
     wrapped.instance()._handlerCountFilmReset();
-    expect(wrapped.state().numberOfmovie).toEqual(COUNT_OF_FILMS)
-    
+    expect(wrapped.state().numberOfmovie).toEqual(COUNT_OF_FILMS);
   });
 });

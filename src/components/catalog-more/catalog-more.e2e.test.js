@@ -6,13 +6,13 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-describe('Catalog btn ', () => {
+describe(`Catalog btn `, () => {
   const handleShowButton = jest.fn();
-  it('should be click', () => {
+  it(`should be click`, () => {
     const main = mount(<CatalogMore addMovies={handleShowButton} />);
 
-    const showButton = main.find('.catalog__button');
-    showButton.simulate('click');
+    const showButton = main.find(`.catalog__button`);
+    showButton.simulate(`click`);
     expect(handleShowButton).toHaveBeenCalled();
   });
 });

@@ -8,7 +8,7 @@ import {ActionCreator} from '../../store/show-films/show-films';
 const SmallMovieCardWrapped = withSmallPlayer(SmallMovieCard);
 
 const CatalogList = (props) => {
-  const {films, history, onSelectedFilm} = props;
+  const {films, history, handleSelectedFilms, onSelectedFilm} = props;
   return (
     <div className="catalog__movies-list">
       {films &&
@@ -18,6 +18,7 @@ const CatalogList = (props) => {
               history={history}
               key={film.title}
               film={film}
+              handleSelectedFilms={handleSelectedFilms}
               onSelectedFilm={onSelectedFilm}
             />
           );
@@ -33,4 +34,9 @@ CatalogList.propTypes = {
   handleSelectedFilms: PropTypes.func,
 };
 
-export default CatalogList;
+const mapDispatchToProps = (dispatch) => ({
+  handleSelectedFilms: (film) => {
+    dispatch(ActionCreator.chooseFilm(film));
+  },
+});
+export default connect(null, mapDispatchToProps)(CatalogList);

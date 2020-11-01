@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withSmallPlayer is rendered correctly 1`] = `
+<div
+  isPlaying={false}
+  onClick={[Function]}
+>
+  Test
+</div>
+`;

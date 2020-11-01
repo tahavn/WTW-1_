@@ -1,8 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import VideoPlayer from '../video-player/video-player';
-import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/show-films/show-films';
 
 class SmallMovieCard extends PureComponent {
   constructor(props) {
@@ -58,6 +56,7 @@ SmallMovieCard.propTypes = {
   onIsPlayingChange: PropTypes.func,
   onSelectedFilm: PropTypes.func,
   handlerFilmClick: PropTypes.func,
+  handleSelectedFilms: PropTypes.func,
   film: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string,
@@ -67,10 +66,5 @@ SmallMovieCard.propTypes = {
   handlerFilmMouseMove: PropTypes.func,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  handleSelectedFilms(film) {
-    dispatch(ActionCreator.chooseFilm(film));
-  },
-});
 
-export default connect(null, mapDispatchToProps)(SmallMovieCard);
+export default SmallMovieCard;

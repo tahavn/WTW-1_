@@ -8,7 +8,7 @@ import NameSpace from '../../store/name-space';
 
 const mockStore = configureStore([]);
 describe(`App`, () => {
-  it(`Reander pageMain`, () => {
+  it(`Render pageMain`, () => {
     const store = mockStore({
       [NameSpace.DATA]: {
         films,
