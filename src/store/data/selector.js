@@ -1,5 +1,6 @@
 import NameSpace from '../name-space';
 import {createSelector} from 'reselect';
+
 const getIsLoading = (state) => {
   return state[NameSpace.DATA].isLoading;
 };
@@ -16,6 +17,7 @@ const getSimilarFilms = (state, id) => {
   });
   return films;
 };
+
 const getFilms = (state, props) => {
   return state[NameSpace.DATA].films;
 };

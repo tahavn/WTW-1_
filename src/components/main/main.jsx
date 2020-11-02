@@ -34,6 +34,7 @@ const Main = (props) => {
       </svg>
     </React.Fragment>
   );
+  
   return (
     <React.Fragment>
       <section className="movie-card">

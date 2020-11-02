@@ -1,6 +1,6 @@
+import {extend} from './utils';
 export const adaptiveFilms = (film) => {
-  return {
-    ...film,
+  return extend(film, {
     title: film.name,
     srcMovie: film.preview_video_link,
     rating: 4,
@@ -8,7 +8,7 @@ export const adaptiveFilms = (film) => {
     year: film.released,
     src: film.background_image,
     src_test: film.poster_image,
-  };
+  });
 };
 /*
 id: 0,

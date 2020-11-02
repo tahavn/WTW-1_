@@ -4,9 +4,10 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
-
+import {redirect} from "./store/middlewares/redirect";
 import {createAPI} from './api';
 import reducer from './store/reducer';
+
 import {ActionCreator,Operations} from './store/data/reducer';
 import App from './components/app/app';
 
@@ -18,7 +19,10 @@ const api = createAPI(onUnauthorize);
 
 const store = createStore(
   reducer,
-  composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api)))
+  composeWithDevTools(
+    applyMiddleware(thunk.withExtraArgument(api)),
+    applyMiddleware(redirect)
+    )
 );
 
 setTimeout(() => {
