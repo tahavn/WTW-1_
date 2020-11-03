@@ -2,8 +2,8 @@ import React, {PureComponent} from 'react';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import {connect} from 'react-redux';
-import {getUser} from '../../store/user/selector';
-import {ActionCreator} from '../../store/user/reducer';
+import {getUser} from '../../store/user/user-selector';
+import {ActionCreator,Operations} from '../../store/user/user-reducer';
 
 class Singin extends PureComponent {
   constructor() {
@@ -92,7 +92,7 @@ class Singin extends PureComponent {
 }
 const mapDispatchToProps = (dispatch) => ({
   singIn: (user) => {
-    dispatch(ActionCreator.singIn(user));
+    dispatch(Operations.login(user));
   },
 });
 const mapStateToProps = (state) => ({

@@ -1,12 +1,12 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {ActionCreator} from '../../store/show-films/show-films';
+import {ActionCreator} from '../../store/show-films/show-films-reducer';
 import {
   getSelectedFilms,
   hasSelectedFilms,
   getFavoriteFilms,
-} from '../../store/show-films/selector';
+} from '../../store/show-films/show-films-selector';
 
 class MyListButton extends PureComponent {
   constructor(props) {

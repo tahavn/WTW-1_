@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {getFilmById} from '../../store/data/selector';
+import {getFilmById} from '../../store/data/data-selector';
 
 const withPlayerControl = (Component) => {
   class WithPlayerControl extends PureComponent {

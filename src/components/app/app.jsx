@@ -8,13 +8,14 @@ import Singin from '../singin/singin';
 import Addreview from '../addreview/addreview';
 import MoviePage from '../pages/movie/movie';
 import Player from '../player/player';
+import PrivateRouter from '../private-route/private-route';
 
 import MylistPage from '../pages/mylist-page/mylist-page';
 import PlayerMyTest from '../player/player-test';
 import withPlayer from '../../hocs/withPlayer/withPlayer';
 import withTags from '../../hocs/with-tags/with-tags';
 import Loading from '../loading/loading';
-import {getIsLoading} from '../../store/data/selector';
+import {getIsLoading} from '../../store/data/data-selector';
 
 const VideoWrappedPlayer = withPlayer(Player);
 const MainWithTags = withTags(Main);
@@ -37,7 +38,7 @@ const App = (props) => {
         <Route path="/singin">
           <Singin />
         </Route>
-        <Route
+        <PrivateRouter
           path="/films/:id/review"
           render={(routerProps) => {
             return <Addreview {...routerProps} films={[`need films!`]} />; // todo: need
@@ -57,9 +58,13 @@ const App = (props) => {
             );
           }}
         />
-        <Route path="/mylist">
-          <MylistPage />
-        </Route>
+        <PrivateRouter
+          path="/mylist"
+          render={(routerProps) => {
+            return <MylistPage path={`/mylist`} />;
+          }}
+        />
+
         <Route
           path="/player/:id"
           render={(routerProps) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getUser} from '../../store/user/selector';
+import {getUser} from '../../store/user/user-selector';
 const Header = (props) => {
   const {className, Breadcrumbs, id} = props;
   return (

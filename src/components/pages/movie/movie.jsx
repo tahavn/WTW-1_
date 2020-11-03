@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {getUser} from '../../../store/user/selector';
-import {getSelectFilm, getFilms, getSimilarFilms, getFilmById} from '../../../store/data/selector';
-import {getSelectedFilms, hasSelectedFilms} from '../../../store/show-films/selector';
-import {ActionCreator} from '../../../store/show-films/show-films';
+import {getUser} from '../../../store/user/user-selector';
+import {getSelectFilm, getFilms, getSimilarFilms, getFilmById} from '../../../store/data/data-selector';
+import {getSelectedFilms, hasSelectedFilms} from '../../../store/show-films/show-films-selector';
+import {ActionCreator} from '../../../store/show-films/show-films-reducer';
 
 import Header from '../../header/header';
 import MovieTabBar from './movie-tab-bar-nav';

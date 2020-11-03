@@ -1,14 +1,15 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
-import {redirect} from "./store/middlewares/redirect";
+import {redirect} from './store/middlewares/redirect';
 import {createAPI} from './api';
-import reducer from './store/reducer';
+import reducer from './store/root-reducer';
 
-import {ActionCreator,Operations} from './store/data/reducer';
+import {ActionCreator, Operations as DataOperation} from './store/data/data-reducer';
+import {Operations as UserOperation} from './store/user/user-reducer';
 import App from './components/app/app';
 
 const onUnauthorize = () => {
@@ -19,19 +20,15 @@ const api = createAPI(onUnauthorize);
 
 const store = createStore(
   reducer,
-  composeWithDevTools(
-    applyMiddleware(thunk.withExtraArgument(api)),
-    applyMiddleware(redirect)
-    )
+  composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api)), applyMiddleware(redirect))
 );
 
-setTimeout(() => {
-  store.dispatch(Operations.loadFilms());
-}, 1000);
-
-ReactDom.render(
+store.dispatch(DataOperation.loadFilms());
+store.dispatch(UserOperation.checkAuth());
+ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
   document.querySelector(`#root`)
 );
+

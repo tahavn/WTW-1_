@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card';
 import withSmallPlayer from '../../hocs/with-small-player/with-small-player';
-import {ActionCreator} from '../../store/show-films/show-films';
+import {ActionCreator} from '../../store/show-films/show-films-reducer';
 
 const SmallMovieCardWrapped = withSmallPlayer(SmallMovieCard);
 

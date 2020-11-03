@@ -1,11 +1,11 @@
 import React, {PureComponent} from 'react';
 import {getRandomElement} from '../../utils';
 import {connect} from 'react-redux';
-import {getFilms, getIsLoading, getTags} from '../../store/data/selector';
+import {getFilms, getIsLoading, getTags} from '../../store/data/data-selector';
 
-import {getFilmsByGenre, getActiveTag} from '../../store/show-films/selector';
+import {getFilmsByGenre, getActiveTag} from '../../store/show-films/show-films-selector';
 
-import {ActionCreator} from '../../store/show-films/show-films';
+import {ActionCreator} from '../../store/show-films/show-films-reducer';
 const withTags = (Component) => {
   class WithTags extends PureComponent {
     constructor(_props) {
