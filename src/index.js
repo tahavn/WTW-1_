@@ -8,7 +8,7 @@ import {redirect} from './store/middlewares/redirect';
 import {createAPI} from './api';
 import reducer from './store/root-reducer';
 
-import {ActionCreator, Operations as DataOperation} from './store/data/data-reducer';
+import {Operations as DataOperation} from './store/data/data-reducer';
 import {Operations as UserOperation} from './store/user/user-reducer';
 import App from './components/app/app';
 

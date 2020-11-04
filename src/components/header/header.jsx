@@ -39,7 +39,7 @@ const Header = (props) => {
 Header.propTypes = {
   className: PropTypes.string,
   Breadcrumbs: PropTypes.func,
-  id: PropTypes.string,
+  id: PropTypes.number,
 };
 
 const mapStateToProps = (state) => ({

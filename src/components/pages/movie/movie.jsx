@@ -33,7 +33,7 @@ const MoviePage = (props) => {
 
   return (
     <>
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full" style={{background: `${film.background_color}`}}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img src={film.background_image} alt="The Grand Budapest Hotel" />
@@ -50,7 +50,7 @@ const MoviePage = (props) => {
                 <span className="movie-card__year">{film.year}</span>
               </p>
 
-              <div className="movie-card__buttons">
+            <div className="movie-card__buttons">
                 <button
                   onClick={() => history.push(`/player/${selectedID}`)}
                   className="btn btn--play movie-card__button"

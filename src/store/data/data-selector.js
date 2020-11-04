@@ -4,7 +4,12 @@ import {createSelector} from 'reselect';
 const getIsLoading = (state) => {
   return state[NameSpace.DATA].isLoading;
 };
-
+const getFilmComments = (state) => state[NameSpace.DATA].comments;
+const sendCommentStatus = (state) => ({
+  commentsIsSending: state[NameSpace.DATA].sendingComment,
+  sendingIsDone: state[NameSpace.DATA].sendCommentDone,
+  sendingIsError: state[NameSpace.DATA].sendCommentError,
+});
 const getFilmById = (state, props) => {
   const film = state[NameSpace.DATA].films.find((it) => it.id === props.selectedID);
   return film;
@@ -47,4 +52,19 @@ const getSelectFilm = (state, id) => {
   return state.find((it) => it.id === id);
 };
 
-export {getIsLoading, getFilms, getTags, getSelectFilm, getFilmById, getSimilarFilms};
+const getCommetsStatus = (state) => ({
+  commentsIsLoading: state[NameSpace.DATA].loadingComments,
+  loadingIsError: state[NameSpace.DATA].loadCommentsError,
+});
+
+export {
+  getIsLoading,
+  getCommetsStatus,
+  getFilmComments,
+  getFilms,
+  getTags,
+  getSelectFilm,
+  getFilmById,
+  getSimilarFilms,
+  sendCommentStatus,
+};

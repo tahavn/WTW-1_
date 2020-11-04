@@ -2,25 +2,25 @@ import React, {PureComponent} from 'react';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import {connect} from 'react-redux';
-import {getUser} from '../../store/user/user-selector';
-import {ActionCreator,Operations} from '../../store/user/user-reducer';
+import {getUser, getAuthStatus} from '../../store/user/user-selector';
+import {ActionCreator, Operations} from '../../store/user/user-reducer';
 
 class Singin extends PureComponent {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
-      [`user-email`]: ``,
-      [`user-password`]: ``,
+      email: ``,
+      password: ``,
     };
-
+    console.log(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
   handleSubmit(event) {
     event.preventDefault();
     this.props.singIn({
-      name: this.state[`user-email`],
-      password: this.state[`user-password`],
+      email: this.state.email,
+      password: this.state.password,
     });
   }
   handleChange(event) {
@@ -31,31 +31,36 @@ class Singin extends PureComponent {
     });
   }
   render() {
+    const {auth} = this.props;
+    const isInvalidRequest = auth.error ? (
+      <React.Fragment>
+        <div className="sign-in__message">
+          <p>Please enter a valid email address</p>
+        </div>
+      </React.Fragment>
+    ) : (
+      ``
+    );
+
     return (
       <div className="user-page">
         <Header className={`user-page__head`} />
 
         <div className="sign-in user-page__content">
-          {!this.props.user  && (
-            <form
-              onSubmit={this.handleSubmit}
-              action="#"
-              className="sign-in__form"
-            >
+          {!this.props.user && (
+            <form onSubmit={this.handleSubmit} action="#" className="sign-in__form">
+              {isInvalidRequest}
               <div className="sign-in__fields">
                 <div className="sign-in__field">
                   <input
                     className="sign-in__input"
                     type="email"
                     placeholder="Email address"
-                    name="user-email"
+                    name="email"
                     id="user-email"
                     onChange={this.handleChange}
                   />
-                  <label
-                    className="sign-in__label visually-hidden"
-                    htmlFor="user-email"
-                  >
+                  <label className="sign-in__label visually-hidden" htmlFor="user-email">
                     Email address
                   </label>
                 </div>
@@ -64,14 +69,11 @@ class Singin extends PureComponent {
                     className="sign-in__input"
                     type="password"
                     placeholder="Password"
-                    name="user-password"
+                    name="password"
                     id="user-password"
                     onChange={this.handleChange}
                   />
-                  <label
-                    className="sign-in__label visually-hidden"
-                    htmlFor="user-password"
-                  >
+                  <label className="sign-in__label visually-hidden" htmlFor="user-password">
                     Password
                   </label>
                 </div>
@@ -97,5 +99,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 const mapStateToProps = (state) => ({
   user: getUser(state),
+  auth: getAuthStatus(state),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Singin);

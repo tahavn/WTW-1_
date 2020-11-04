@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
+import {Router as BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 // import Content from '../content/content';
 import Main from '../main/main';
 import Singin from '../singin/singin';
@@ -9,21 +9,23 @@ import Addreview from '../addreview/addreview';
 import MoviePage from '../pages/movie/movie';
 import Player from '../player/player';
 import PrivateRouter from '../private-route/private-route';
-
+import history from '../../history';
 import MylistPage from '../pages/mylist-page/mylist-page';
 import PlayerMyTest from '../player/player-test';
 import withPlayer from '../../hocs/withPlayer/withPlayer';
 import withTags from '../../hocs/with-tags/with-tags';
 import Loading from '../loading/loading';
 import {getIsLoading} from '../../store/data/data-selector';
+import withComment from '../../hocs/with-comment/with-comment';
 
 const VideoWrappedPlayer = withPlayer(Player);
 const MainWithTags = withTags(Main);
+const AddreviewWrapped = withComment(Addreview);
 
 const App = (props) => {
   const {isLoading} = props;
   return (
-    <BrowserRouter>
+    <BrowserRouter history={history}>
       <Switch>
         <Route
           exact
@@ -41,7 +43,14 @@ const App = (props) => {
         <PrivateRouter
           path="/films/:id/review"
           render={(routerProps) => {
-            return <Addreview {...routerProps} films={[`need films!`]} />; // todo: need
+            const selectedID = +routerProps.match.params.id;
+            return !isLoading ? (
+              <div style={{background: `black`, height: `100vh`}}>
+                <Loading />
+              </div>
+            ) : (
+              <AddreviewWrapped selectedID={selectedID} history={history} />
+            );
           }}
         />
         <Route
@@ -54,13 +63,13 @@ const App = (props) => {
                 <Loading />
               </div>
             ) : (
-              <MoviePage selectedID={selectedID} history={routerProps.history} />
+              <MoviePage selectedID={selectedID} history={history} />
             );
           }}
         />
         <PrivateRouter
           path="/mylist"
-          render={(routerProps) => {
+          render={() => {
             return <MylistPage path={`/mylist`} />;
           }}
         />
