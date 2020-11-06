@@ -23,10 +23,10 @@ const AddReview = (props) => {
     onSubmitReview,
     sendingComment,
   } = props;
+
   const ratingArray = [1, 2, 3, 4, 5];
 
   const isValidReview = rating && comment ? false : true;
-
   const isSendingReview = () => {
     if (sendingComment.sendingIsDone) {
       history.goBack();
@@ -93,7 +93,7 @@ const AddReview = (props) => {
               placeholder="Review text"
             ></textarea>
             <div className="add-review__submit">
-              <button className="add-review__btn" type="submit">
+              <button disabled={isValidReview} className="add-review__btn" type="submit">
                 Post
               </button>
             </div>
