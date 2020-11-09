@@ -17,6 +17,7 @@ import withTags from '../../hocs/with-tags/with-tags';
 import Loading from '../loading/loading';
 import {getIsLoading} from '../../store/data/data-selector';
 import withComment from '../../hocs/with-comment/with-comment';
+import Mylist from '../mylist/mylist';
 
 const VideoWrappedPlayer = withPlayer(Player);
 const MainWithTags = withTags(Main);
@@ -30,8 +31,8 @@ const App = (props) => {
         <Route
           exact
           path="/"
-          render={(routerProps) => {
-            return <MainWithTags history={routerProps.history} />;
+          render={(routerPros) => {
+            return <MainWithTags history={history} />;
           }}
         />
         {/* <Route exact path="/">
@@ -73,7 +74,7 @@ const App = (props) => {
             return <MylistPage path={`/mylist`} />;
           }}
         />
-
+      {/* <PrivateRouter  path="/mylist" component={Mylist}  /> */}
         <Route
           path="/player/:id"
           render={(routerProps) => {
