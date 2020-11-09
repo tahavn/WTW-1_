@@ -23,6 +23,7 @@ const withPlayerControl = (Component) => {
     componentDidMount() {
       const {selectedFilm} = this.props;
       const video = this.videoRef.current;
+      console.log(this.videoRef);
       video.src = selectedFilm.srcMovie;
       video.play();
       video.onloadedmetadata = () =>

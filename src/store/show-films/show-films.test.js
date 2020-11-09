@@ -1,5 +1,5 @@
 import {films} from '../../../mocks/films';
-import {ActionType, reducer} from './show-films.js';
+import {ActionType, reducer} from './show-films-reducer.js';
 
 describe(`Reducer show-film`, () => {
   it(`Should return initial state`, () => {
