@@ -5,20 +5,19 @@ import {connect} from 'react-redux';
 import {getUser, getAuthStatus} from '../../store/user/user-selector';
 import {ActionCreator, Operations} from '../../store/user/user-reducer';
 
-class Singin extends PureComponent {
+class SignIn extends PureComponent {
   constructor(props) {
     super();
     this.state = {
       email: ``,
       password: ``,
     };
-    console.log(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
   handleSubmit(event) {
     event.preventDefault();
-    this.props.singIn({
+    this.props.signIn({
       email: this.state.email,
       password: this.state.password,
     });
@@ -93,12 +92,16 @@ class Singin extends PureComponent {
   }
 }
 const mapDispatchToProps = (dispatch) => ({
-  singIn: (user) => {
+  signIn: (user) => {
     dispatch(Operations.login(user));
   },
+
 });
 const mapStateToProps = (state) => ({
   user: getUser(state),
   auth: getAuthStatus(state),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Singin);
+
+export {SignIn};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

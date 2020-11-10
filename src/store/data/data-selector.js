@@ -10,8 +10,9 @@ const sendCommentStatus = (state) => ({
   sendingIsDone: state[NameSpace.DATA].sendCommentDone,
   sendingIsError: state[NameSpace.DATA].sendCommentError,
 });
+
 const getFilmById = (state, props) => {
-  const film = state[NameSpace.DATA].films.find((it) => it.id === props.selectedID);
+  const film = getFilms(state).find((it) => it.id === props.selectedID);
   return film;
 };
 
