@@ -17,6 +17,14 @@ const ActionType = {
   SEND_COMMENT_ERROR: `SEND_COMMENT_ERROR`,
   LOAD_COMMENTS_ERROR: `LOAD_COMMENTS_ERROR`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
+
+  IS_LOADING_FAVORITE_FILM: `IS_LOADING_FAVORITE_FILM`,
+  LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
+  LOAD_FAVORITE_FILMS_ERROR: `LOAD_FAVORITE_FILMS_ERROR`,
+
+  SEND_FAVORITE_FILM: `SEND_FAVORITE_FILM`,
+  SEND_FAVORITE_FILM_DONE: `SEND_FAVORITE_FILM_DONE`,
+  SEND_FAVORITE_FILM_ERROR: `SEND_FAVORITE_FILM_ERROR`,
 };
 
 const initialState = {
@@ -30,6 +38,10 @@ const initialState = {
   sendingComment: false,
   sendCommentDone: false,
   sendCommentError: false,
+
+  isLoadingFavoriteFilms: true,
+  favoriteFilms: [],
+  isFavoriteFilmsError: false,
 };
 
 const ActionCreator = {
@@ -63,6 +75,32 @@ const ActionCreator = {
   loadFilms: (films) => ({
     type: ActionType.LOAD_FILMS,
     payload: films,
+  }),
+
+  isSendingFavoriteFilm: (review) => ({
+    type: ActionType.SEND_FAVORITE_FILM,
+    payload: review,
+  }),
+  sendFavoriteFilmDone: (done) => ({
+    type: ActionType.SEND_FAVORITE_FILM_DONE,
+    payload: done,
+  }),
+  sendFavoriteFilmError: (error) => ({
+    type: ActionType.SEND_FAVORITE_FILM_ERROR,
+    error: error,
+  }),
+
+  isLoadingFavoriteFilm: (payload) => ({
+    type: ActionType.IS_LOADING_FAVORITE_FILM,
+    payload: payload,
+  }),
+  loadFavoriteFilms: (payload) => ({
+    type: ActionType.LOAD_FAVORITE_FILMS,
+    payload: payload,
+  }),
+  loadingFavoriteFilmsError: (payload) => ({
+    type: ActionType.LOAD_FAVORITE_FILMS_ERROR,
+    payload: payload,
   }),
 };
 const Operations = {
@@ -100,6 +138,7 @@ const Operations = {
       });
   },
   loadFilms: () => (dispatch, _getState, api) => {
+
     return api
       .get(`${EntryPoints.FILMS}`)
       .then((response) => {
@@ -107,6 +146,21 @@ const Operations = {
         dispatch(ActionCreator.isLoadingFilm(true));
       })
       .catch((err) => {
+        throw err;
+      });
+  },
+  loadFavoriteFilms: () => (dispatch, _getState, api) => {
+    console.log(12);
+
+    return api
+      .get('/favorite')
+      .then((response) => {
+        dispatch(ActionCreator.isLoadingFavoriteFilm(false));
+        dispatch(ActionCreator.loadingFavoriteFilmsError(false));
+        dispatch(ActionCreator.loadFavoriteFilms(response.data.map((film) => adaptiveFilms(film))));
+      })
+      .catch((err) => {
+        dispatch(ActionCreator.loadingFavoriteFilmsError(false));
         throw err;
       });
   },
@@ -135,6 +189,12 @@ const reducer = (state = initialState, action) => {
         sendCommentError: action.payload,
       });
 
+    case ActionType.IS_LOADING_FAVORITE_FILM:
+        return extend(state, {isLoadingFavoriteFilms: action.payload})
+    case ActionType.LOAD_FAVORITE_FILMS:
+        return extend(state,{favoriteFilms: action.payload} )
+    case ActionType.LOAD_FAVORITE_FILMS_ERROR:
+        return extend(state,{isFavoriteFilmsError: action.payload} )
     case ActionType.GET_FILMS:
       return state;
     case ActionType.LOAD_FILMS:

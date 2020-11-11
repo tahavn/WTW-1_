@@ -8,12 +8,7 @@ const MylistPage = () => {
   return (
     <div className="user-page">
       <Header className={`user-page__head`} />
-      <section className="catalog">
-        <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <div className="catalog__movies-list">
-          <SmallMovieCard />
-        </div>
-      </section>
+      <Mylist/>
       <Footer />
     </div>
   );

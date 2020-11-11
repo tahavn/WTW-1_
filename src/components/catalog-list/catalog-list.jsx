@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card';
 import withSmallPlayer from '../../hocs/with-small-player/with-small-player';
 import {ActionCreator} from '../../store/show-films/show-films-reducer';
-
+import history from '../../history'
 const SmallMovieCardWrapped = withSmallPlayer(SmallMovieCard);
 
 const CatalogList = (props) => {
-  const {films, history, handleSelectedFilms, onSelectedFilm} = props;
+  const {films, handleSelectedFilms} = props;
   return (
     <div className="catalog__movies-list">
       {films &&
@@ -19,7 +19,6 @@ const CatalogList = (props) => {
               key={film.title}
               film={film}
               handleSelectedFilms={handleSelectedFilms}
-              onSelectedFilm={onSelectedFilm}
             />
           );
         })}

@@ -4,6 +4,14 @@ import {createSelector} from 'reselect';
 const getIsLoading = (state) => {
   return state[NameSpace.DATA].isLoading;
 };
+
+const getFavoriteFilms = (state) => {
+  return state[NameSpace.DATA].favoriteFilms;
+};
+const statusFavariteFilms = (state) => ({
+  isLoadingFavoriteFilms: state[NameSpace.DATA].isLoadingFavoriteFilms,
+  isFavoriteFilmsError: state[NameSpace.DATA].isFavoriteFilmsError,
+});
 const getFilmComments = (state) => state[NameSpace.DATA].comments;
 const sendCommentStatus = (state) => ({
   commentsIsSending: state[NameSpace.DATA].sendingComment,
@@ -68,4 +76,6 @@ export {
   getFilmById,
   getSimilarFilms,
   sendCommentStatus,
+  getFavoriteFilms,
+  statusFavariteFilms,
 };
