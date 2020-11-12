@@ -138,7 +138,6 @@ const Operations = {
       });
   },
   loadFilms: () => (dispatch, _getState, api) => {
-
     return api
       .get(`${EntryPoints.FILMS}`)
       .then((response) => {
@@ -150,8 +149,6 @@ const Operations = {
       });
   },
   loadFavoriteFilms: () => (dispatch, _getState, api) => {
-    console.log(12);
-
     return api
       .get('/favorite')
       .then((response) => {
@@ -190,11 +187,11 @@ const reducer = (state = initialState, action) => {
       });
 
     case ActionType.IS_LOADING_FAVORITE_FILM:
-        return extend(state, {isLoadingFavoriteFilms: action.payload})
+      return extend(state, {isLoadingFavoriteFilms: action.payload});
     case ActionType.LOAD_FAVORITE_FILMS:
-        return extend(state,{favoriteFilms: action.payload} )
+      return extend(state, {favoriteFilms: action.payload});
     case ActionType.LOAD_FAVORITE_FILMS_ERROR:
-        return extend(state,{isFavoriteFilmsError: action.payload} )
+      return extend(state, {isFavoriteFilmsError: action.payload});
     case ActionType.GET_FILMS:
       return state;
     case ActionType.LOAD_FILMS:
@@ -204,4 +201,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export {reducer, ActionCreator, Operations};
+export {reducer, ActionType, ActionCreator, Operations};
