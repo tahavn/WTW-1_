@@ -64,20 +64,23 @@ const withComment = (Component) => {
       );
     }
   }
-  const mapStateToProps = (state, props) => ({
-    selectedFilm: getFilmById(state, props),
-  });
 
-  const mapDispatchToProps = (dispatch) => ({
-    handleSubmitReview(review, id) {
-      dispatch(DataOperations.sendComment(review, id));
-    },
-    loadFilms() {
-      dispatch(DataOperations.loadFilms());
-    },
-  });
-
-  return connect(mapStateToProps, mapDispatchToProps)(WithComment);
+  return WithComment;
 };
 
-export default withComment;
+
+const mapStateToProps = (state, props) => ({
+  selectedFilm: getFilmById(state, props),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleSubmitReview(review, id) {
+    dispatch(DataOperations.sendComment(review, id));
+  },
+  loadFilms() {
+    dispatch(DataOperations.loadFilms());
+  },
+});
+
+export {withComment};
+export default  () => connect(mapStateToProps, mapDispatchToProps)(withComment);
