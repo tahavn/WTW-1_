@@ -12,13 +12,7 @@ export const films = [
     year: 2005,
     src: '/img/fantastic-beasts--the-crimes-of-grindelwald.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
@@ -91,18 +85,11 @@ export const films = [
     genre: 'Horror',
     rating: 4,
     countRating: 240,
-    descriptin:
-      'Wood and stone place Nice, cozy, warm big bed apartment Wood and stone place',
+    descriptin: 'Wood and stone place Nice, cozy, warm big bed apartment Wood and stone place',
     year: 2016,
     src: '/img/bohemian-rhapsody.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
@@ -175,18 +162,11 @@ export const films = [
     genre: 'Romance',
     rating: 4,
     countRating: 240,
-    descriptin:
-      'Nice, cozy, warm big bed apartment Wood and stone place Nice, cozy, warm big bed apartment',
+    descriptin: 'Nice, cozy, warm big bed apartment Wood and stone place Nice, cozy, warm big bed apartment',
     year: 2005,
     src: '/img/what-we-do-in-the-shadows.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
@@ -264,13 +244,7 @@ export const films = [
     year: 2013,
     src: '/img/revenant.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
@@ -343,18 +317,11 @@ export const films = [
     genre: 'Sci-Fi',
     rating: 2,
     countRating: 240,
-    descriptin:
-      'Nice, cozy, warm big bed apartment Nice, cozy, wood and stone place Nice, cozy, wood and stone place',
+    descriptin: 'Nice, cozy, warm big bed apartment Nice, cozy, wood and stone place Nice, cozy, wood and stone place',
     year: 2011,
     src: '/img/johnny-english.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
@@ -432,13 +399,7 @@ export const films = [
     year: 2010,
     src: '/img/shutter-island.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
@@ -511,18 +472,11 @@ export const films = [
     genre: 'Romance',
     rating: 2,
     countRating: 240,
-    descriptin:
-      'Wood and stone place Nice, cozy, warm big bed apartment Nice, cozy, wood and stone place',
+    descriptin: 'Wood and stone place Nice, cozy, warm big bed apartment Nice, cozy, wood and stone place',
     year: 2010,
     src: '/img/pulp-fiction.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
@@ -595,18 +549,11 @@ export const films = [
     genre: 'Horror',
     rating: 1,
     countRating: 240,
-    descriptin:
-      'Nice, cozy, warm big bed apartment Nice, cozy, wood and stone place Nice, cozy, wood and stone place',
+    descriptin: 'Nice, cozy, warm big bed apartment Nice, cozy, wood and stone place Nice, cozy, wood and stone place',
     year: 2007,
     src: '/img/no-country-for-old-men.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
@@ -684,13 +631,7 @@ export const films = [
     year: 2006,
     src: '/img/snatch.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
@@ -768,13 +709,7 @@ export const films = [
     year: 2000,
     src: '/img/moonrise-kingdom.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
@@ -852,13 +787,7 @@ export const films = [
     year: 2016,
     src: '/img/seven-years-in-tibet.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
@@ -931,18 +860,11 @@ export const films = [
     genre: 'Documentary',
     rating: 2,
     countRating: 240,
-    descriptin:
-      'Wood and stone place Wood and stone place Beautiful & luxurious apartment at great location',
+    descriptin: 'Wood and stone place Wood and stone place Beautiful & luxurious apartment at great location',
     year: 2013,
     src: '/img/midnight-special.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
@@ -1015,18 +937,11 @@ export const films = [
     genre: 'Thrillers',
     rating: 2,
     countRating: 240,
-    descriptin:
-      'Wood and stone place Wood and stone place Beautiful & luxurious apartment at great location',
+    descriptin: 'Wood and stone place Wood and stone place Beautiful & luxurious apartment at great location',
     year: 2004,
     src: '/img/war-of-the-worlds.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
@@ -1099,18 +1014,11 @@ export const films = [
     genre: 'Dramas',
     rating: 2,
     countRating: 240,
-    descriptin:
-      'Nice, cozy, wood and stone place Wood and stone place Nice, cozy, wood and stone place',
+    descriptin: 'Nice, cozy, wood and stone place Wood and stone place Nice, cozy, wood and stone place',
     year: 2007,
     src: '/img/dardjeeling-limited.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
@@ -1188,13 +1096,7 @@ export const films = [
     year: 2012,
     src: '/img/orlando.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
@@ -1272,13 +1174,7 @@ export const films = [
     year: 1997,
     src: '/img/mindhunter.jpg',
     director: 'Wes Andreson',
-    starring: [
-      'Bill Murray',
-      'Edward Norton',
-      'Jude Law',
-      'Willem Dafoe',
-      'and other',
-    ],
+    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     reviews: [
       {
         description:
