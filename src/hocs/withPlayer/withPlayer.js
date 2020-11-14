@@ -23,28 +23,31 @@ const withPlayerControl = (Component) => {
     componentDidMount() {
       const {selectedFilm} = this.props;
       const video = this.videoRef.current;
-      console.log(this.videoRef);
-      video.src = selectedFilm.srcMovie;
-      video.play();
-      video.onloadedmetadata = () =>
-        this.setState({
-          duration: video.duration,
-        });
-      video.ontimeupdate = () =>
-        this.setState({
-          currentTime: Math.trunc(video.currentTime),
-        });
+      if (video) {
+        video.src = selectedFilm.srcMovie;
+        video.play();
+        video.onloadedmetadata = () =>
+          this.setState({
+            duration: video.duration,
+          });
+        video.ontimeupdate = () =>
+          this.setState({
+            currentTime: Math.trunc(video.currentTime),
+          });
+      }
     }
 
     componentDidUpdate() {
       const video = this.videoRef.current;
-      if (document.fullscreenElement === null) {
-        video.controls = false;
-      }
-      if (this.state.isPlaying) {
-        video.play();
-      } else {
-        video.pause();
+      if (video) {
+        if (document.fullscreenElement === null) {
+          video.controls = false;
+        }
+        if (this.state.isPlaying) {
+          video.play();
+        } else {
+          video.pause();
+        }
       }
     }
 
@@ -100,10 +103,10 @@ const withPlayerControl = (Component) => {
     }
   }
 
-  const mapStateToProps = (state, props) => ({
-    selectedFilm: getFilmById(state, props),
-  });
-  return connect(mapStateToProps)(WithPlayerControl);
+  return WithPlayerControl;
 };
-
-export default withPlayerControl;
+const mapStateToProps = (state, props) => ({
+  selectedFilm: getFilmById(state, props),
+});
+export {withPlayerControl};
+export default (Component) => connect(mapStateToProps)(withPlayerControl(Component));

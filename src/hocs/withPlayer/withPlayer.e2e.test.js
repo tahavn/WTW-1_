@@ -2,36 +2,25 @@ import React from 'react';
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {films} from '../../../mocks/films';
-import withPlayer from './withPlayer';
-import {Provider} from 'react-redux';
-import configureStore from 'redux-mock-store';
-import NameSpace from '../../store/name-space';
-const mockStore = configureStore([]);
+import {withPlayerControl} from './withPlayer';
+
 configure({adapter: new Adapter()});
 
 const mockComponent = () => {
-  return <div>1</div>;
+  return <h1>Hello</h1>;
 };
-const mockComponenWithPF = () => {
-  return <div>1</div>;
-};
+
 const selectedID = 2;
 describe('HOC withPlayer', () => {
-  const store = mockStore({
-    [NameSpace.DATA]: {
-      films: films,
-    },
-  });
-  it('Should withvideo on play', () => {
-    const ComponentWrapped = withPlayer(mockComponent);
+  it(`Should withvideo on play`, () => {
+    const ComponentWrapped = withPlayerControl(mockComponent);
 
-    const wrapper = shallow(
-      <Provider store={store}>
-        <ComponentWrapped selectedID={selectedID}  />
-      </Provider>
-    );
+    const wrapper = shallow(<ComponentWrapped selectedID={selectedID} selectedFilm={films[0]} />);
 
-    wrapper.instance()._handleIsPlayingChange(true);
+    wrapper.instance()._handleIsPlayingChange();
+    wrapper.instance().setState((prev) => ({
+      isPlaying: !prev.isPlaying,
+    }));
     expect(wrapper.state().isPlaying).toEqual(true);
   });
 });

@@ -1,12 +1,13 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {getFilmById} from '../../store/data/data-selector';
+import {getFilmById, getIsLoading} from '../../store/data/data-selector';
 import {Operations as DataOperations} from '../../store/data/data-reducer';
-
+import Loading from '../../components/loading/loading';
 const withComment = (Component) => {
   class WithComment extends PureComponent {
     constructor(props) {
       super(props);
+      console.log(props)
       this.state = {
         rating: false,
         comment: false,
@@ -50,7 +51,11 @@ const withComment = (Component) => {
 
     render() {
       const {comment, rating} = this.state;
-      const {selectedFilm} = this.props;
+      const {selectedFilm, iSLoading} = this.props;
+      console.log(iSLoading);
+      if (!iSLoading) {
+        return <Loading />;
+      }
       return (
         <Component
           {...this.props}
@@ -68,9 +73,9 @@ const withComment = (Component) => {
   return WithComment;
 };
 
-
 const mapStateToProps = (state, props) => ({
   selectedFilm: getFilmById(state, props),
+  iSLoading: getIsLoading(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -83,4 +88,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {withComment};
-export default  () => connect(mapStateToProps, mapDispatchToProps)(withComment);
+export default (Component) => connect(mapStateToProps, mapDispatchToProps)(withComment(Component));

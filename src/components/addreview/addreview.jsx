@@ -36,7 +36,7 @@ const AddReview = (props) => {
     } else if (sendingComment.commentIsSinding && sendingComment.sendingIsError) {
       return `Sending review can't be done ,Something went wrong`;
     }
-    return false;
+    return null;
   };
   const isBlocked = sendingComment.commentIsSinding && !sendingComment.sendingIsError ? true : false;
   return (
