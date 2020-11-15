@@ -8,6 +8,7 @@ export const adaptiveFilms = (film) => {
     year: film.released,
     src: film.background_image,
     src_test: film.poster_image,
+    isFavorite: film.is_favorite,
   });
 };
 /*

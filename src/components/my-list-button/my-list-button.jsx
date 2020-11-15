@@ -1,12 +1,9 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {Operations as DataOperations} from '../../store/data/data-reducer';
 import {ActionCreator} from '../../store/show-films/show-films-reducer';
-import {
-  getSelectedFilms,
-  hasSelectedFilms,
-  getFavoriteFilms,
-} from '../../store/show-films/show-films-selector';
+import {getSelectedFilms, hasSelectedFilms, getFavoriteFilms} from '../../store/show-films/show-films-selector';
 
 class MyListButton extends PureComponent {
   constructor(props) {
@@ -15,19 +12,13 @@ class MyListButton extends PureComponent {
   }
 
   _handleMyListClick() {
-    const {favoriteFilms, film} = this.props;
-    if (favoriteFilms.includes(film)) {
-      this.props.removeFilm(film);
-      return;
-    } else {
-      this.props.addFilm(film);
-      return;
-    }
+    const status = isFavorite ? 0 : 1;
   }
   render() {
-    const {favoriteFilms, film} = this.props;
-    const isSelect = favoriteFilms.includes(film);
-    const mainInList = isSelect ? (
+    const {favoriteFilms, film, isFavorite} = this.props;
+    console.log(isFavorite);
+    // isFavorite={isFavorite}
+    const mainInList = isFavorite ? (
       <svg viewBox="0 0 18 14" width="18" height="14">
         <use xlinkHref="#in-list"></use>
       </svg>
@@ -38,11 +29,7 @@ class MyListButton extends PureComponent {
     );
 
     return (
-      <button
-        className="btn btn--list movie-card__button"
-        type="button"
-        onClick={this._handleMyListClick}
-      >
+      <button className="btn btn--list movie-card__button" type="button" onClick={this._handleMyListClick}>
         {mainInList}
         <span>My list</span>
       </button>
@@ -55,6 +42,9 @@ const mapStateToProps = (state) => ({
   favoriteFilms: getFavoriteFilms(state),
 });
 const mapDispatchToProps = (dispaptch) => ({
+  onChangeFavoriteFilm(id, status) {
+    dispaptch(DataOperations.changeFavorite(id, status));
+  },
   addFilm: (film) => {
     dispaptch(ActionCreator.selectedFilm(film));
   },
@@ -62,4 +52,5 @@ const mapDispatchToProps = (dispaptch) => ({
     dispaptch(ActionCreator.deleteFilm(film));
   },
 });
+export {MyListButton};
 export default connect(mapStateToProps, mapDispatchToProps)(MyListButton);

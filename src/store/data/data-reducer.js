@@ -201,6 +201,16 @@ const Operations = {
         throw err;
       });
   },
+  changeFavorite: (id, status) => (dispatch, _getState, api) => {
+    return api
+      .post(`favorite/${id}/${status}`)
+      .then(() => {
+        dispatch(Operations.loadFilms());
+      })
+      .catch((err) => {
+        throw err;
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {

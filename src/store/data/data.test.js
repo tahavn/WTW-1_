@@ -35,6 +35,9 @@ const initialState = {
   sendCommentDone: false,
   sendCommentError: false,
 
+  isLoadingPromo: true,
+  filmPromo: false,
+  isErrorPromo: false,
   isLoadingFavoriteFilms: true,
   favoriteFilms: [],
   isFavoriteFilmsError: false,
@@ -80,9 +83,9 @@ describe('Async operation work correctly', () => {
         type: ActionType.LOAD_FILMS,
         payload: dataMock.map((film) => adaptiveFilms(film)),
       });
-      expect(dispatch).toHaveBeenNthCalledWith(2,{
+      expect(dispatch).toHaveBeenNthCalledWith(2, {
         type: ActionType.IS_LOAD_FILMS,
-      })
+      });
     });
   });
 });

@@ -61,7 +61,7 @@ const MoviePage = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <MyListButton film={film} />
+                <MyListButton isFavorite={film.isFavorite} film={film} />
 
                 <a
                   onClick={(event) => {

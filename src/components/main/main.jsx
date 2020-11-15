@@ -25,9 +25,11 @@ const Main = (props) => {
     loadFilmPromo,
     isLoadingFilmPromo,
   } = props;
+  
   useEffect(() => {
     loadFilmPromo();
   }, []);
+
   if (!isLoading || isLoadingFilmPromo) {
     return (
       <div style={{background: 'black', height: '100vh'}}>
