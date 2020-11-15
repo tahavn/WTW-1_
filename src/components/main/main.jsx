@@ -1,25 +1,41 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import Loading from '../loading/loading';
 import Header from '../header/header';
 import Content from '../content/content';
+import {Operations as DataOperation} from '../../store/data/data-reducer';
+import {getFilmPromo, getLoadingFilmPromo} from '../../store/data/data-selector';
 import withCountFilms from '../../hocs/with-count-films/with-count-films';
 
 const ContentWithCount = withCountFilms(Content);
 
 const Main = (props) => {
-  const {history, handlerSorted, handleSelectedFilms, tags, activeTag, films, isLoading, mainFilm} = props;
-
-  if (!isLoading) {
+  const {
+    history,
+    handlerSorted,
+    handleSelectedFilms,
+    tags,
+    activeTag,
+    films,
+    isLoading,
+    filmPromo,
+    loadFilmPromo,
+    isLoadingFilmPromo,
+  } = props;
+  useEffect(() => {
+    loadFilmPromo();
+  }, []);
+  if (!isLoading || isLoadingFilmPromo) {
     return (
       <div style={{background: 'black', height: '100vh'}}>
         <Loading />
       </div>
     );
   }
-  const {src, id, title, genre, year, background_image} = mainFilm;
+  const {src, id, title, genre, year, background_image,poster_image} = filmPromo;
   // const years = year.getFullYear();
   const isInMyLyst = !id ? (
     <React.Fragment>
@@ -34,7 +50,7 @@ const Main = (props) => {
       </svg>
     </React.Fragment>
   );
-  
+
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -49,14 +65,14 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={src} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={poster_image} alt="The Grand Budapest Hotel poster" width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{year}</span>
+                <span className="movie-card__genre">Genre: {genre}</span>
+                <span className="movie-card__year">Year: {year}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -104,4 +120,15 @@ Main.propTypes = {
   films: PropTypes.array,
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  filmPromo: getFilmPromo(state),
+  isLoadingFilmPromo: getLoadingFilmPromo(state),
+});
+const mapDispatchToProps = (dispatch) => ({
+  loadFilmPromo: () => {
+    dispatch(DataOperation.loadFilmPromo());
+  },
+});
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

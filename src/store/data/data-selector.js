@@ -36,6 +36,14 @@ const getFilms = (state, props) => {
   return state[NameSpace.DATA].films;
 };
 
+const getLoadingFilmPromo = (state) => {
+  return state[NameSpace.DATA].isLoadingPromo;
+};
+
+const getFilmPromo = (state) => {
+  return state[NameSpace.DATA].filmPromo;
+};
+
 // const getTags = (state) => {
 //   const films = state[NameSpace.DATA].films;
 //   const tags = films.map((f) => {
@@ -78,4 +86,6 @@ export {
   sendCommentStatus,
   getFavoriteFilms,
   statusFavariteFilms,
+  getFilmPromo,
+  getLoadingFilmPromo,
 };

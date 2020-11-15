@@ -22,6 +22,9 @@ const ActionType = {
   LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
   LOAD_FAVORITE_FILMS_ERROR: `LOAD_FAVORITE_FILMS_ERROR`,
 
+  IS_LOADING_PROMO_FILM: `IS_LOADING_PROMO_FILM`,
+  LOAD_PROMO_FILMS: `LOAD_PROMO_FILMS`,
+  LOAD_PROMO_FILMS_ERROR: `LOAD_PROMO_FILMS_ERROR`,
   SEND_FAVORITE_FILM: `SEND_FAVORITE_FILM`,
   SEND_FAVORITE_FILM_DONE: `SEND_FAVORITE_FILM_DONE`,
   SEND_FAVORITE_FILM_ERROR: `SEND_FAVORITE_FILM_ERROR`,
@@ -31,6 +34,11 @@ const initialState = {
   films: [],
   isLoading: false,
   isError: false,
+
+  isLoadingPromo: true,
+  filmPromo: false,
+  isErrorPromo: false,
+
   comments: false,
   loadingComments: true,
   loadCommentsError: false,
@@ -56,6 +64,7 @@ const ActionCreator = {
     type: ActionType.LOAD_COMMENTS,
     payload: comments,
   }),
+
   sendCommentError: (error) => ({
     type: ActionType.SEND_COMMENT_ERROR,
     payload: error,
@@ -77,6 +86,21 @@ const ActionCreator = {
     payload: films,
   }),
 
+  isLoadingPromo: (load) => ({
+    type: ActionType.IS_LOADING_PROMO_FILM,
+    payload: load,
+  }),
+
+  loadPromo: (promoFilm) => ({
+    type: ActionType.LOAD_PROMO_FILMS,
+    payload: promoFilm,
+  }),
+
+  loadPromoError: (error) => ({
+    type: ActionType.LOAD_PROMO_FILMS_ERROR,
+    payload: error,
+  }),
+
   isSendingFavoriteFilm: (review) => ({
     type: ActionType.SEND_FAVORITE_FILM,
     payload: review,
@@ -87,20 +111,20 @@ const ActionCreator = {
   }),
   sendFavoriteFilmError: (error) => ({
     type: ActionType.SEND_FAVORITE_FILM_ERROR,
-    error: error,
+    payload: error,
   }),
 
-  isLoadingFavoriteFilm: (payload) => ({
+  isLoadingFavoriteFilm: (load) => ({
     type: ActionType.IS_LOADING_FAVORITE_FILM,
-    payload: payload,
+    payload: load,
   }),
-  loadFavoriteFilms: (payload) => ({
+  loadFavoriteFilms: (favoritsFilms) => ({
     type: ActionType.LOAD_FAVORITE_FILMS,
-    payload: payload,
+    payload: favoritsFilms,
   }),
-  loadingFavoriteFilmsError: (payload) => ({
+  loadingFavoriteFilmsError: (error) => ({
     type: ActionType.LOAD_FAVORITE_FILMS_ERROR,
-    payload: payload,
+    payload: error,
   }),
 };
 const Operations = {
@@ -150,14 +174,30 @@ const Operations = {
   },
   loadFavoriteFilms: () => (dispatch, _getState, api) => {
     return api
-      .get('/favorite')
+      .get(`/favorite`)
       .then((response) => {
         dispatch(ActionCreator.isLoadingFavoriteFilm(false));
         dispatch(ActionCreator.loadingFavoriteFilmsError(false));
         dispatch(ActionCreator.loadFavoriteFilms(response.data.map((film) => adaptiveFilms(film))));
       })
       .catch((err) => {
-        dispatch(ActionCreator.loadingFavoriteFilmsError(false));
+        dispatch(ActionCreator.loadingFavoriteFilmsError(true));
+        throw err;
+      });
+  },
+
+  loadFilmPromo: () => (dispatch, _getState, api) => {
+    return api
+      .get(`/films/promo`)
+      .then((response) => {
+        console.log(response.data);
+        dispatch(ActionCreator.isLoadingPromo(false));
+        dispatch(ActionCreator.loadPromoError(false));
+        dispatch(ActionCreator.loadPromo(response.data));
+        // dispatch(ActionCreator.loadPromo(response.data((film) => adaptiveFilms(film))));
+      })
+      .catch((err) => {
+        dispatch(ActionCreator.loadPromoError(false));
         throw err;
       });
   },
@@ -184,6 +224,19 @@ const reducer = (state = initialState, action) => {
     case ActionType.SEND_COMMENT_ERROR:
       return extend(state, {
         sendCommentError: action.payload,
+      });
+
+    case ActionType.IS_LOADING_PROMO_FILM:
+      return extend(state, {
+        isLoadingPromo: action.payload,
+      });
+    case ActionType.LOAD_PROMO_FILMS:
+      return extend(state, {
+        filmPromo: action.payload,
+      });
+    case ActionType.LOAD_PROMO_FILMS_ERROR:
+      return extend(state, {
+        isErrorPromo: action.payload,
       });
 
     case ActionType.IS_LOADING_FAVORITE_FILM:

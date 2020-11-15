@@ -29,29 +29,27 @@ const withTags = (Component) => {
           tags={this.props.tags}
           activeTag={this.props.tag}
           films={this.props.films}
-          mainFilm={this.props.mainFilm}
           isLoading={this.props.isLoading}
         />
       );
     }
   }
-  const mapStateToProps = (state, props) => ({
-    mainFilm: getFilms(state,props)[0],
-    films: getFilmsByGenre(state),
-    tag: getActiveTag(state),
-    tags: getTags(state),
-    isLoading: getIsLoading(state),
-  });
-
-  const mapDispatchToProps = (dispatch) => ({
-    handlerSorted(activeTag) {
-      dispatch(ActionCreator.chooseGenre(activeTag));
-    },
-    handleSelectedFilms(film) {
-      dispatch(ActionCreator.chooseFilm(film));
-    },
-  });
-  return connect(mapStateToProps, mapDispatchToProps)(WithTags);
+  return WithTags;
 };
+const mapStateToProps = (state) => ({
+  films: getFilmsByGenre(state),
+  tag: getActiveTag(state),
+  tags: getTags(state),
+  isLoading: getIsLoading(state),
+});
 
-export default withTags;
+const mapDispatchToProps = (dispatch) => ({
+  handlerSorted(activeTag) {
+    dispatch(ActionCreator.chooseGenre(activeTag));
+  },
+  handleSelectedFilms(film) {
+    dispatch(ActionCreator.chooseFilm(film));
+  },
+});
+export {withTags};
+export default (Component) => connect(mapStateToProps, mapDispatchToProps)(withTags(Component));

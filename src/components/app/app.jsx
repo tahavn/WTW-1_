@@ -31,7 +31,7 @@ const App = (props) => {
         <Route
           exact
           path="/"
-          render={(routerPros) => {
+          render={() => {
             return <MainWithTags history={history} />;
           }}
         />
