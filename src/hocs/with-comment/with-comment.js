@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import {getFilmById, getIsLoading} from '../../store/data/data-selector';
 import {Operations as DataOperations} from '../../store/data/data-reducer';
 import Loading from '../../components/loading/loading';
@@ -7,7 +8,6 @@ const withComment = (Component) => {
   class WithComment extends PureComponent {
     constructor(props) {
       super(props);
-      console.log(props)
       this.state = {
         rating: false,
         comment: false,
@@ -52,7 +52,6 @@ const withComment = (Component) => {
     render() {
       const {comment, rating} = this.state;
       const {selectedFilm, iSLoading} = this.props;
-      console.log(iSLoading);
       if (!iSLoading) {
         return <Loading />;
       }
@@ -69,7 +68,12 @@ const withComment = (Component) => {
       );
     }
   }
-
+  WithComment.propTypes = {
+    selectedFilm: PropTypes.object,
+    iSLoading: PropTypes.bool,
+    handleSubmitReview: PropTypes.func,
+    loadFilms: PropTypes.func,
+  };
   return WithComment;
 };
 

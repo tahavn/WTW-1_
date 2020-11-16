@@ -12,11 +12,12 @@ class MyListButton extends PureComponent {
   }
 
   _handleMyListClick() {
+    const {isFavorite, onChangeFavoriteFilm, film} = this.props;
     const status = isFavorite ? 0 : 1;
+    onChangeFavoriteFilm(film.id, status);
   }
   render() {
     const {favoriteFilms, film, isFavorite} = this.props;
-    console.log(isFavorite);
     // isFavorite={isFavorite}
     const mainInList = isFavorite ? (
       <svg viewBox="0 0 18 14" width="18" height="14">

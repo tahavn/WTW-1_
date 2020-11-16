@@ -19,17 +19,6 @@ import CatalogList from '../../catalog-list/catalog-list';
 
 const MoviePage = (props) => {
   const {film, history, selectedID, isSelect, similarFilms} = props;
-  // const film = getSelectFilm(films, selectedID);
-
-  // const toggleFilm = (film) => {
-  //   if (isSelect) {
-  //     props.removeFilm(film);
-  //     return;
-  //   } else {
-  //     props.addFilm(film);
-  //     return;
-  //   }
-  // };
 
   return (
     <>
@@ -50,7 +39,7 @@ const MoviePage = (props) => {
                 <span className="movie-card__year">{film.year}</span>
               </p>
 
-            <div className="movie-card__buttons">
+              <div className="movie-card__buttons">
                 <button
                   onClick={() => history.push(`/player/${selectedID}`)}
                   className="btn btn--play movie-card__button"
@@ -95,10 +84,6 @@ const MoviePage = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          {/* <div className="catalog__movies-list">
-            <SmallMovieCard />
-          </div> */}
           <CatalogList history={history} films={similarFilms} />
         </section>
 

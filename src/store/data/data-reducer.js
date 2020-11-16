@@ -190,7 +190,6 @@ const Operations = {
     return api
       .get(`/films/promo`)
       .then((response) => {
-        console.log(response.data);
         dispatch(ActionCreator.isLoadingPromo(false));
         dispatch(ActionCreator.loadPromoError(false));
         dispatch(ActionCreator.loadPromo(response.data));

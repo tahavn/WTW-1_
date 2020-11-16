@@ -18,17 +18,14 @@ const Header = (props) => {
       <div className="user-block">
         {props.user && (
           <div className="user-block__avatar">
-            <img
-              src="/img/avatar.jpg"
-              alt="User avatar"
-              width="63"
-              height="63"
-            />
+            <Link to="/mylist">
+              <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
+            </Link>
           </div>
         )}
         {!props.user && (
           <Link to="/singin" className="user-block__link">
-              Sign in
+            Sign in
           </Link>
         )}
       </div>
@@ -40,6 +37,10 @@ Header.propTypes = {
   className: PropTypes.string,
   Breadcrumbs: PropTypes.func,
   id: PropTypes.number,
+  user: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.bool
+  ]),
 };
 
 const mapStateToProps = (state) => ({

@@ -14,7 +14,6 @@ const Player = (props) => {
     leftTime,
     onSetFullScreen,
   } = props;
-  console.log(props);
   const btnIsPlaying = isPlaying ? (
     <React.Fragment>
       <svg viewBox="0 0 14 21" width="14" height="21">
@@ -75,6 +74,8 @@ Player.propTypes = {
   onIsPlayingChange: PropTypes.func,
   leftTime: PropTypes.func,
   onSetFullScreen: PropTypes.func,
+  history: PropTypes.object,
+  selectedFilm: PropTypes.object,
 };
 
 export default Player;

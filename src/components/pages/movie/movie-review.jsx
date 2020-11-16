@@ -21,7 +21,12 @@ class MovieReview extends PureComponent {
   componentDidMount() {
     this.props.loadComments(this.props.film);
   }
-
+  omponentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.comments !== prevProps.comments) {
+      this.props.loadComments(this.props.film);
+    }
+  }
   render() {
     const {label, comments, activeTab, film, loadComments, selectedID} = this.props;
     const cheched = label === activeTab;
