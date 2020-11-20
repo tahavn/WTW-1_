@@ -24,7 +24,7 @@ const store = createStore(
 );
 
 store.dispatch(DataOperation.loadFilms());
-store.dispatch(UserOperation.checkAuth());
+// store.dispatch(UserOperation.checkAuth());
 ReactDOM.render(
   <Provider store={store}>
     <App />
