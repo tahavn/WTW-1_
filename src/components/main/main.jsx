@@ -38,6 +38,7 @@ const Main = (props) => {
     );
   }
   const {src, id, title, genre, year, background_image,poster_image} = filmPromo;
+  
   // const years = year.getFullYear();
   const isInMyLyst = !id ? (
     <React.Fragment>
@@ -74,7 +75,7 @@ const Main = (props) => {
               <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">Genre: {genre}</span>
-                <span className="movie-card__year">Year: {year}</span>
+                {/* <span className="movie-card__year">Year: {years}</span> */}
               </p>
 
               <div className="movie-card__buttons">
