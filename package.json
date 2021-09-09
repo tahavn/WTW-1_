@@ -19,19 +19,19 @@
     "jest": "25.1.0",
     "react-test-renderer": "16.12.0",
     "redux-devtools-extension": "2.13.8",
-    "redux-mock-store": "1.5.4"
-  },
-  "engines": {
-    "node": "10"
+    "redux-mock-store": "1.5.4",
+    "svg-sprite-loader": "^6.0.9",
+    "svgo": "2.5.0",
+    "svgo-loader": "3.0.0"
   },
   "dependencies": {
-    "-": "0.0.1",
     "@babel/core": "7.8.7",
     "@babel/preset-env": "7.8.7",
     "@babel/preset-react": "7.8.3",
     "axios": "0.19.2",
     "axios-mock-adapter": "1.17.0",
     "babel-loader": "8.1.0",
+    "css-loader": "^6.2.0",
     "eslint-plugin-react": "7.18.3",
     "history": "4.10.1",
     "prop-types": "15.7.2",
@@ -42,6 +42,8 @@
     "redux": "4.0.5",
     "redux-thunk": "2.3.0",
     "reselect": "4.0.0",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
     "webpack": "4.41.6",
     "webpack-cli": "3.3.12",
     "webpack-dev-server": "3.10.3"

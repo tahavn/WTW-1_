@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-const Player = (props) => {
-  // const playerToggler = (currentTime * 100) / duration + `%`;
+import pauseLogo from '../../icons/pause.svg';
+import './index.css';
 
+const Player = (props) => {
   const {
     isPlaying,
     currentTime,
@@ -16,9 +17,12 @@ const Player = (props) => {
   } = props;
   const btnIsPlaying = isPlaying ? (
     <React.Fragment>
-      <svg viewBox="0 0 14 21" width="14" height="21">
+      {/* <svg viewBox="0 0 14 21" width="14" height="21">
         <use xlinkHref="#pause"></use>
-      </svg>
+      </svg> */}
+      <svg viewBox={pauseLogo.viewBox}>
+        <use xlinkHref={`#${pauseLogo.id}`} />
+      </svg>`;
       <span>Pause</span>
     </React.Fragment>
   ) : (
@@ -30,7 +34,7 @@ const Player = (props) => {
     </React.Fragment>
   );
   return (
-    <div className="player">
+    <div className="player divinka">
       {children}
 
       <button type="button" className="player__exit" onClick={() => history.push(`${`/films`}/${selectedFilm.id}`)}>
@@ -41,7 +45,7 @@ const Player = (props) => {
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value={`${currentTime}`} max={`${duration}`}></progress>
-            <div className="player__toggler" style={{left: `${(currentTime / duration) * 100}%`}}>
+            <div className="player__toggler" style={{ left: `${(currentTime / duration) * 100}%` }}>
               Toggler
             </div>
           </div>

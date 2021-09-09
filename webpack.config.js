@@ -21,6 +21,14 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+       {
+        test: /\.svg$/,
+        use: [
+          'svg-sprite-loader',
+          // 'svgo-loader'
+        ]
+      },
+    
     ],
   },
   resolve: {
