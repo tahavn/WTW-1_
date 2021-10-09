@@ -33,6 +33,7 @@
     "babel-loader": "8.1.0",
     "css-loader": "^6.2.0",
     "eslint-plugin-react": "7.18.3",
+    "file-loader": "^6.2.0",
     "history": "4.10.1",
     "prop-types": "15.7.2",
     "react": "16.12.0",

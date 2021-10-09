@@ -4,6 +4,8 @@ import Header from '../header/header';
 import {connect} from 'react-redux';
 import {getUser, getAuthStatus} from '../../store/user/user-selector';
 import {ActionCreator, Operations} from '../../store/user/user-reducer';
+import svgTest from '../../icons/full-screen.svg';
+import pauseLogo from '../../icons/pause.svg';
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -51,6 +53,9 @@ class SignIn extends PureComponent {
               {isInvalidRequest}
               <div className="sign-in__fields">
                 <div className="sign-in__field">
+                  <svg viewBox={svgTest.viewBox}>
+                    <use xlinkHref={svgTest.url} />
+                  </svg>
                   <input
                     className="sign-in__input"
                     type="email"

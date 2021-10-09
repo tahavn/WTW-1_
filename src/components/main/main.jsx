@@ -9,6 +9,15 @@ import Content from '../content/content';
 import {Operations as DataOperation} from '../../store/data/data-reducer';
 import {getFilmPromo, getLoadingFilmPromo} from '../../store/data/data-selector';
 import withCountFilms from '../../hocs/with-count-films/with-count-films';
+// import {sprite} from '../../svg/index';
+import pauseLogo from '../../icons/pause.svg';
+import svgTest from '../../svg/add.svg';
+// import testSVG from '../../svg/add.svg';
+
+// console.log('pauseLogo', pauseLogo);
+// console.log('sprite', sprite);
+console.log('sprite icon', svgTest);
+console.log('pauseLogo', pauseLogo);
 
 const ContentWithCount = withCountFilms(Content);
 
@@ -25,7 +34,7 @@ const Main = (props) => {
     loadFilmPromo,
     isLoadingFilmPromo,
   } = props;
-  
+
   useEffect(() => {
     loadFilmPromo();
   }, []);
@@ -38,7 +47,7 @@ const Main = (props) => {
     );
   }
   const {src, id, title, genre, year, background_image,poster_image} = filmPromo;
-  
+
   // const years = year.getFullYear();
   const isInMyLyst = !id ? (
     <React.Fragment>
@@ -48,6 +57,9 @@ const Main = (props) => {
     </React.Fragment>
   ) : (
     <React.Fragment>
+      {/*<svg viewBox={pauseLogo.viewBox}>*/}
+      {/*  <use xlinkHref={pauseLogo.url} />*/}
+      {/*</svg>*/}
       <svg viewBox="0 0 19 20" width="19" height="20">
         <use xlinkHref="#add"></use>
       </svg>

@@ -1,4 +1,5 @@
 const path = require('path');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -21,16 +22,41 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'file-loader',
+            // loader: 'svg-sprite-loader',
+            options: {
+              // extract: true,
+              // spriteFilename: '[chunkname]\.svg'
+            }
+          },
+          // 'svgo-loader'
+        ],
+        exclude: path.resolve(`${__dirname}/src/svg`),
+      },
        {
         test: /\.svg$/,
         use: [
-          'svg-sprite-loader',
+          {
+            // loader: 'file-loader',
+            loader: 'svg-sprite-loader',
+            options: {
+              // extract: true,
+              // spriteFilename: '[chunkname]\.svg'
+            }
+          },
           // 'svgo-loader'
-        ]
+        ],
+         include: path.resolve(`${__dirname}/src/svg`),
       },
-    
     ],
   },
+  plugins: [
+    new SpriteLoaderPlugin()
+  ],
   resolve: {
     extensions: ['.js', '.jsx'],
   },
