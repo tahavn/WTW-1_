@@ -9,14 +9,18 @@ import Content from '../content/content';
 import {Operations as DataOperation} from '../../store/data/data-reducer';
 import {getFilmPromo, getLoadingFilmPromo} from '../../store/data/data-selector';
 import withCountFilms from '../../hocs/with-count-films/with-count-films';
-// import {sprite} from '../../svg/index';
+import {sprite} from '../../svg/index';
 import pauseLogo from '../../icons/pause.svg';
-import svgTest from '../../svg/add.svg';
+import svgTest from '../../svg/one/add.svg';
+import svgTest2 from '../../svg/two/pause.svg';
+import svgTest22 from '../../svg/two/play-s.svg';
 // import testSVG from '../../svg/add.svg';
 
 // console.log('pauseLogo', pauseLogo);
-// console.log('sprite', sprite);
+console.log('sprite', sprite);
 console.log('sprite icon', svgTest);
+console.log('sprite icon 2', svgTest2);
+console.log('sprite icon 22', svgTest22);
 console.log('pauseLogo', pauseLogo);
 
 const ContentWithCount = withCountFilms(Content);

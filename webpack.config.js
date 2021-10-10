@@ -27,30 +27,26 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            // loader: 'svg-sprite-loader',
-            options: {
-              // extract: true,
-              // spriteFilename: '[chunkname]\.svg'
-            }
+            options: {}
           },
-          // 'svgo-loader'
         ],
         exclude: path.resolve(`${__dirname}/src/svg`),
       },
        {
         test: /\.svg$/,
-        use: [
-          {
-            // loader: 'file-loader',
+        // use: [
+        //   {
             loader: 'svg-sprite-loader',
             options: {
-              // extract: true,
-              // spriteFilename: '[chunkname]\.svg'
-            }
-          },
-          // 'svgo-loader'
-        ],
-         include: path.resolve(`${__dirname}/src/svg`),
+              extract: true,
+              spriteFilename: (name) => {
+                console.log('#############', name);
+                return `${/svg([\\|/])(.*?)\1/gm.exec(name)[2]}.svg`;
+              },
+            },
+        //   },
+        // ],
+         include: [path.resolve(`${__dirname}/src/svg`)],
       },
     ],
   },

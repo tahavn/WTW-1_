@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>
+    .sprite-symbol-usage {display: none;}
+    .sprite-symbol-usage:target {display: inline;}
+  </style><symbol viewBox="0 0 14 21" id="pause">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <g id="pause_Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="pause_Line" fill="#EEE5B5" fill-rule="nonzero" points="0 -1.11910481e-13 4 -1.11910481e-13 4 21 0 21" />
+        <polygon id="pause_Line" fill="#EEE5B5" fill-rule="nonzero" points="10 -1.11910481e-13 14 -1.11910481e-13 14 21 10 21" />
+    </g>
+</symbol><symbol viewBox="0 0 19 19" fill="none" id="play-s">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 0L19 9.5L0 19V0Z" fill="#EEE5B5" />
+</symbol></defs><use id="pause-usage" xlink:href="#pause" class="sprite-symbol-usage" /><use id="play-s-usage" xlink:href="#play-s" class="sprite-symbol-usage" /></svg>
