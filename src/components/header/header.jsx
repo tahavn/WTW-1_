@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getUser} from '../../store/user/user-selector';
+import headerIcon from './one.svg';
+
+console.log('header', headerIcon);
+
 const Header = (props) => {
   const {className, Breadcrumbs, id} = props;
   return (

@@ -22,32 +22,32 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
-      {
+      // {
+      //   test: /\.svg$/,
+      //   use: [
+      //     {
+      //       loader: 'file-loader',
+      //       options: {}
+      //     },
+      //   ],
+      //   exclude: [path.resolve(`${__dirname}/src/svg`), path.resolve(`${__dirname}/src/svgTwo`)]
+      // },
+       {
         test: /\.svg$/,
         use: [
           {
-            loader: 'file-loader',
-            options: {}
-          },
-        ],
-        exclude: path.resolve(`${__dirname}/src/svg`),
-      },
-       {
-        test: /\.svg$/,
-        // use: [
-        //   {
             loader: 'svg-sprite-loader',
             options: {
               extract: true,
-              spriteFilename: (name) => {
-                console.log('#############', name);
-                return `${/svg([\\|/])(.*?)\1/gm.exec(name)[2]}.svg`;
-              },
+              spriteFilename: '[chunkname]\.svg'
+              // spriteFilename: (name) => {
+              //   return `${/svg([\\|/])(.*?)\1/gm.exec(name)[2]}.svg`;
+              // },
             },
-        //   },
-        // ],
-         include: [path.resolve(`${__dirname}/src/svg`)],
-      },
+          },
+        ],
+         // include: [path.resolve(`${__dirname}/src/svg`)],
+       },
     ],
   },
   plugins: [

@@ -1,4 +1,7 @@
 import React from 'react';
+import footerIcon from './two.svg';
+
+console.log('footer', footerIcon);
 
 const Footer = () => {
   return (
