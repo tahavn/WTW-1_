@@ -39,7 +39,7 @@ module.exports = {
             loader: 'svg-sprite-loader',
             options: {
               extract: true,
-              spriteFilename: '[chunkname]\.svg'
+              // spriteFilename: '[chunkname]\.svg'
               // spriteFilename: (name) => {
               //   return `${/svg([\\|/])(.*?)\1/gm.exec(name)[2]}.svg`;
               // },

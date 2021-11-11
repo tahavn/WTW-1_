@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getUser} from '../../store/user/user-selector';
 import headerIcon from './one.svg';
+import footerIcon from '../footer/two.svg';
 
 console.log('header', headerIcon);
 
@@ -11,6 +12,9 @@ const Header = (props) => {
   const {className, Breadcrumbs, id} = props;
   return (
     <header className={`page-header movie-card__head ${className || ``}`}>
+      <svg viewBox={headerIcon.viewBox}>
+        <use xlinkHref={headerIcon.url} />
+      </svg>
       <div className="logo">
         <Link to="/" className="logo__link">
           <span className="logo__letter logo__letter--1">W</span>
